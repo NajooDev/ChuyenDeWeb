@@ -1,0 +1,516 @@
+:root{
+    z-index: 1;
+}
+.header-search form .search-btn{
+    background: red;
+    
+}
+.center {
+    margin-top: 52px;
+    background-color: #ebebeb;
+    height: 777px;
+}
+.center .outer_wrap{
+    width:1000px;
+    height:666px;
+    background-color: white;
+    margin: 20px 240px 20px 240px;
+    /* border: 3px solid black; */
+    padding-top :80px;
+}
+
+.center .outer_wrap .in_wrap{
+    width: 600px;
+    height: 490px;
+    border: 3px groove #ebebeb;
+    /* margin :auto; */
+    margin: 50px 200px 0px 200px; 
+    padding: 55px 43px;
+
+}
+
+/* .center .outer_wrap .in_wrap .center_title{
+    padding-left: 50px;
+} */
+
+.center .outer_wrap .in_wrap .input_big {
+    width:510px;
+    height:43px;
+    margin-top: 20px;
+}
+
+.center .outer_wrap .in_wrap .other {
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.center .outer_wrap .in_wrap .other input{
+    width: 225px;
+    height: 38px;
+}
+.center .outer_wrap .in_wrap .other .birth_year{
+    width: 225px;
+    float: left;
+}
+
+.center .outer_wrap .in_wrap .other .Sex{
+    width: 225px;
+    float: right;
+    margin-left: 45px;
+}
+
+.center .outer_wrap .in_wrap .under{
+    width:510px;
+    margin-top: 20px;
+}
+
+/* .center .outer_wrap .in_wrap .under input{
+    width:500px;
+    height:43px;
+} */
+
+.center .outer_wrap .in_wrap .signUp button{
+    width:100%;
+    height:43px;
+    /*margin: 26px 49px 0px 49px;*/
+    background-color: #D10024;
+    color: white;
+}
+
+.center .outer_wrap .in_wrap .signIn {
+    width:510px;
+    height:43px;
+    margin: 30px 0px;
+    text-align: center;
+}
+
+/* LOGIN */
+
+.center .outer_wrap .in_wrap .signUp {
+    width:510px;
+    height:43px;
+    /* margin: 5px 49px 0px 49px; */
+    /* text-align: center; */
+}
+
+.center .outer_wrap .in_wrap .signUp a{
+   float: right;
+   margin-left: 20px;
+}
+
+.center .outer_wrap .in_wrap .Login .login_button{
+    width: 510px;
+    height: 43px;
+    /* margin: 10px 49px 0px 49px; */
+    background-color: #D10024;
+    color: white;
+}
+
+.center .outer_wrap .in_wrap .Login .formGroup{
+    width: 510px;
+    height: 43px;
+    margin: 26px 0px;
+    background-color: #2d4373;
+    line-height: 43px;
+    text-align: center;
+    position: relative;
+}
+
+.login_facebook, .login_gg ,i{
+    color: white;
+}
+
+i.fa-facebook , i.fa-google {
+    position: absolute;
+    left: 0px;
+    width: 37px;
+    height: 43px;
+    padding-top: 16px;
+    border-right: 1px solid black;
+}
+
+.center .outer_wrap .in_wrap .Login .formGroup.google{
+    background-color: red;
+}
+
+.center .outer_wrap .in_wrap .error {
+    color: red;
+    /* margin: 12px 0px 0px 50px; */
+    font-weight: 500;
+}
+
+
+/*get back password*/
+
+.center .outer_wrap .in_wrap .get_back_password_title{
+    text-align: center;
+}
+
+.center .outer_wrap .in_wrap.get_back_password_wrap{
+    height: 330px;
+}
+
+.center .outer_wrap .in_wrap.get_back_password_wrap .error{
+    color:#ff0000;
+}
+.center.get_back_password_center{
+    height: 392px;
+}
+.center .outer_wrap .in_wrap.get_back_password_wrap .message{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.center .outer_wrap .in_wrap.get_back_password_wrap .signInButton{
+    margin: 0px 244px 0px 244px;
+    background: #ff0000;
+    color: white;
+    border: none;
+    padding: 9px 12px;
+}
+
+/*MY ACCOUNT BUTTON*/
+.container .myAccount{
+    color:black;
+    position: relative;
+}
+
+.container .myAccount .subAccountButton a{
+    color:black;
+    display:block;
+    margin-top: 4px;
+}
+
+.container .myAccount .subAccountButton i{
+    margin: 0px 5px 0px 5px;
+    color: black;
+}
+
+.container .myAccount .subAccountButton a:hover{
+    color: red;
+    background: #ebebeb;
+}
+.container .myAccount .subAccountButton{
+    display: none;
+    position: absolute;
+    background:white;
+    width: 114px;
+    z-index: 5;
+}
+
+.container .myAccount:hover .subAccountButton{
+    display: block;
+}
+
+/*LỊCH SỬ MUA HÀNG*/
+.history_buy{
+    margin-top: 7px;
+}
+
+
+/*SEARCH SHOP*/
+
+.col-md-6.searchShop{
+    display: contents;
+}
+.header-search.header-searchShop{
+    padding: 15px 0px;
+    text-align: center;
+    width: 730px;
+    margin: auto;
+}
+
+/*PRODUCT LIST*/
+
+#product-out{
+    height: 500px;
+}
+
+button.aside-button {
+    height: 35px;
+    width: 90px;
+    background: #D10024;
+    color: #FFF;
+    font-weight: 700;
+    border: none;
+    margin-left: 19px;
+}
+
+.aside-header {
+    display: flex;
+}
+
+/*new*/
+
+:root{
+    --orange-color : #f5720e;
+    --blue-color: #4a6bd8;
+}
+
+a:hover{
+    color: var(--orange-color);
+}
+.header-logo .logo img {
+    display: block;
+    width: 175px;
+}
+
+#header{
+    background-color: var(--blue-color);
+}
+
+.header-search form .search-btn {
+    background-color: var(--orange-color);
+}
+
+#header .container{
+    width: 100%;
+    padding: 0px 100px;
+}
+
+
+img {
+    width: 40px;
+}
+.sign p,.myAccountSign a{
+    margin :0px;
+    font-size: 13px;
+    color: white;
+}
+
+.myAccountSign a:hover{
+    color: var(--orange-color);
+}
+
+.cart-dropdown{
+    right: -88px;
+    top: 39px;
+}
+
+.myAccountSign {
+    display: flex;
+    width: 176px;
+}
+
+.header-ctn>div {
+    display: flex;
+    float:left;
+}
+
+.input{
+    width:80%;
+    margin-right: -4px;
+}
+
+.search-btn{
+    height: 40px;
+    background-color: var(--orange-color);
+    border: 0px;
+    color: white;
+}
+
+.col-md-5{
+    padding-top: 16px;
+    position:relative;
+}
+
+/*login*/
+input[type="checkbox"] {
+    width: 14px;
+    height: 12px;
+    margin: 16px 0px;
+}
+
+.center{
+	
+}
+
+/*menu bar-start*/
+#header{
+    padding-bottom:0px;
+}
+
+/* / */
+.item-big{
+    display:flex;
+}
+.nav-item {
+    padding: 15px;
+    position: relative;
+}
+
+.nav-item a{
+    font-size: 17px;
+}
+
+.nav-item:hover{
+    background-color: var(--blue-color);
+    color:white;
+
+}
+
+.nav-item:hover .item-small{
+    display:block;
+}
+
+.item-small{
+    position: absolute;
+    top: 54px;
+    left: 0px;
+    width: 197px;
+    background-color: white;
+    display: none;
+    border: 1px solid black;
+}
+
+.item-small li {
+    border-bottom: 1px solid black;
+    padding: 4px;
+    position: relative;
+}
+
+.item-small .caret-down{
+    color:black;
+    font-size: 15px;
+    font-family: fangsong;
+    text-transform: capitalize;
+}
+
+.item-small i{
+    color: black;
+    float: right;
+    font-size: 24px;
+}
+
+/*smallest*/
+
+ul.item-smallest {
+    position: absolute;
+    left: 197px;
+    top: 0px;
+    width: 200px;
+    background-color: white;
+    border: 1px solid black;
+    display:none;
+}
+
+.item-small .caret-down:hover{
+    color:var(--orange-color);
+}
+.item-small li:hover .item-smallest{
+    display:block;
+}
+
+/* / */
+
+.menu_bar{
+    background-color: var(--orange-color);
+}
+/*mau chu cho menu bar*/
+.menu_bar a {
+    color: white;
+}
+/*menu bar-end*/
+
+
+/*chọn số lượng sản phẩm trong trang chi tiết sản phẩm*/
+
+.number_product .number{
+    width: 91px;
+    height: 48px;
+    text-align: center;
+    font-size: 22px;
+    font-family: fantasy;
+    border: 1px solid #ebebeb;
+}
+
+.number_product{
+    display:flex;
+}
+
+.up_down button {
+    display: block;
+    width: 32px;
+    background-color: white;
+    border: 1px solid #ebebeb;
+}
+
+.up_down button:hover {
+    background-color: var(--blue-color);
+    color:white;
+}
+
+body{
+    background-color: #f8f8f8;
+}
+
+/* .section.section-padding {
+    padding-top: 0px;
+} */
+
+
+#breadcrumb{
+    position: relative;
+    top: 166px;
+    padding:0px;
+}
+.breadcrumb {
+    padding: 0px;
+    background: #FBFBFC;
+    margin-bottom: 0px;
+}
+
+.tab-nav{
+    background-color:#FBFBFC ;
+    border:1px solid #ebebeb;
+}
+
+/*product*/
+.product{
+    background-color:white;
+}
+
+/*product last*/
+.products-tabs.product-last {
+    width: 100%;
+    margin-left: 15px;
+}
+
+.products-tabs.product-last .product {
+    width: 255px;
+    display: inline-block;
+    margin-right: 26px;
+}
+
+#footer p, #footer a{
+    color:white;
+}
+
+
+/*SEARCH*/
+#liveSearch {
+    width: 477px;
+    border: 1px solid black;
+    /* height: 140px; */
+    background-color: honeydew;
+    position: absolute;
+    z-index: 1;
+    display:none;
+}
+
+.product_search {
+    display: flex;
+    border-bottom: 1px solid black;
+}
+
+.product_search img {
+    width: 75px;
+}
+
+.product_search_detail .product-name {
+    font-size: 17px;
+}
+
+.product_search_detail .product-price {
+    font-size: 14px;
+}

@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+		<link type="text/css" rel="stylesheet" href="css/slick.css"/>
+		<link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
+		<link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link type="text/css" rel="stylesheet" href="css/style.css"/>
+		<link type="text/css" rel="stylesheet" href="css/tmdt.css"/>
+		<title>Electro - HTML Ecommerce Template</title>
+
+		<style>
+			body{
+				background-color: #f8f8f8;
+			}
+
+			.section_service .row{
+    			display: flex;
+    			justify-content: space-around;
+			}
+
+			.section_service .col-lg-3.col-md-6 {
+    			background-color: white;
+    			padding: 14px;
+				width: 350px;
+			}
+			.section_service .itemsv{
+				display:flex;
+			}
+			.section_service .itemsv .image{
+				margin-right: 12px;
+				margin-top: 8px;
+			}
+			.section_service .itemsv h4{
+				margin: 10px 0px 0px 0px;
+			}
+
+			/*poster*/
+			img.img-responsive.center-block {
+    			width: 100%;
+    			margin-top: 22px;
+			}
+
+			/*product*/
+			.product{
+				background-color:white;
+			}
+
+			/*product last*/
+			.products-tabs.product-last {
+    			width: 100%;
+    			margin-left: 15px;
+			}
+
+			.products-tabs.product-last .product {
+    			width: 255px;
+    			display: inline-block;
+    			margin-right: 26px;
+			}
+
+			#footer p, #footer a{
+				color:white;
+			}
+		</style>
+    </head>
+	<body>
+
+	<!-- HEADER -->
+	<header id="main-header">
+
+		<!-- MAIN HEADER -->
+		<div id="header">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- LOGO -->
+					<div class="col-md-3">
+						<div class="header-logo">
+							<a href="#" class="logo">
+								<img src="https://bizweb.dktcdn.net/100/092/840/themes/885495/assets/logo.png?1676876029121" alt="">
+							</a>
+						</div>
+					</div>
+					<!-- /LOGO -->
+
+					<!-- SEARCH BAR -->
+					<div class="col-md-5 ">
+
+						<form>
+							<input class="input" placeholder="Search here">
+							<button class="search-btn">Search</button>
+						</form>
+
+					</div>
+					<!-- /SEARCH BAR -->
+
+					<!-- ACCOUNT -->
+					<div class="col-md-4 clearfix">
+						<div class="header-ctn">
+							<div class="myAccount">
+								<div class="avata">
+									<img src="https://icons.veryicon.com/png/o/internet--web/55-common-web-icons/person-4.png" alt="">
+								</div>
+								<div class="sign">
+									<p><a href="">Đăng Ký</a>/ <a href="">Đăng nhập</a></p>
+									<p>Tài khoảng của bạn</p>
+								</div>
+							</div>
+							<!-- Wishlist -->
+							<div>
+								<a href="#">
+									<i class="fa fa-heart-o"></i>
+									<span>Your Wishlist</span>
+									<div class="qty">2</div>
+								</a>
+							</div>
+							<!-- /Wishlist -->
+
+							<!-- Cart -->
+							<div class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+									<i class="fa fa-shopping-cart"></i>
+									<span>Your Cart</span>
+									<div class="qty">3</div>
+								</a>
+								<div class="cart-dropdown">
+									<div class="cart-list">
+										<div class="product-widget">
+											<div class="product-img">
+												<img src="./img/product01.png" alt="">
+											</div>
+											<div class="product-body">
+												<h3 class="product-name"><a href="#">product name goes here</a></h3>
+												<h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
+											</div>
+											<button class="delete"><i class="fa fa-close"></i></button>
+										</div>
+
+										<div class="product-widget">
+											<div class="product-img">
+												<img src="./img/product02.png" alt="">
+											</div>
+											<div class="product-body">
+												<h3 class="product-name"><a href="#">product name goes here</a></h3>
+												<h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
+											</div>
+											<button class="delete"><i class="fa fa-close"></i></button>
+										</div>
+									</div>
+									<div class="cart-summary">
+										<small>3 Item(s) selected</small>
+										<h5>SUBTOTAL: $2940.00</h5>
+									</div>
+									<div class="cart-btns">
+										<a href="#">View Cart</a>
+										<a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+									</div>
+								</div>
+							</div>
+							<!-- /Cart -->
+
+							<!-- Menu Toogle -->
+							<div class="menu-toggle">
+								<a href="#">
+									<i class="fa fa-bars"></i>
+									<span>Menu</span>
+								</a>
+							</div>
+							<!-- /Menu Toogle -->
+						</div>
+					</div>
+					<!-- /ACCOUNT -->
+				</div>
+				<!-- row -->
+			</div>
+			<!-- menubar -->
+			<div class="menu_bar">
+				<div class="container">
+					<div class="row">
+						<ul class="item-big ">
+							<li class="nav-item"><a href="#">Trang chủ</a></li>
+							<li class="nav-item">
+								<a href="#">
+									Shop của chó
+									<i class="fa fa-solid fa-caret-down"></i>
+								</a>
+
+								<ul class="item-small">
+									<li>
+										<a class="caret-down" href="#">Thức ăn cho chó</a>
+										<i class="fa fa-solid fa-caret-right"></i>
+										<ul class="item-smallest">
+											<li><a class="caret-down" href="#">Thức ăn hạt khô</a></li>
+											<li><a class="caret-down" href="#">Pate</a></li>
+											<li><a class="caret-down" href="#">Xương gặm bánh thưởng</a></li>
+											<li><a class="caret-down" href="#">Sữa</a></li>
+										</ul>
+									</li>
+									<li>
+										<a class="caret-down" href="#">Thời trang cho chó</a>
+										<i class="fa fa-solid fa-caret-right"></i>
+										<ul class="item-smallest">
+											<li><a class="caret-down" href="#">quần áo hằng ngày</a></li>
+											<li><a class="caret-down" href="#">quần áo lễ hội</a></li>
+											<li><a class="caret-down" href="#">giày vớ</a></li>
+											<li><a class="caret-down" href="#">rọ mõm</a></li>
+											<li><a class="caret-down" href="#">phụ kiện thời trang</a></li>
+										</ul>
+									</li>
+									<li>
+										<a class="caret-down" href="#">Sức khỏe cho chó</a>
+										<i class="fa fa-solid fa-caret-right"></i>
+										<ul class="item-smallest">
+											<li><a class="caret-down" href="#">thực phẩm sức khỏe</a></li>
+											<li><a class="caret-down" href="#">chăm sóc da lông</a></li>
+											<li><a class="caret-down" href="#">xổ giun</a></li>
+											<li><a class="caret-down" href="#">diệt ve rận bọ chét</a></li>
+											<li><a class="caret-down" href="#">tai mắt miệng</a></li>
+											<li><a class="caret-down" href="#">tiêu hóa tiết niệu</a></li>
+										</ul>
+									</li>
+									<li><a class="caret-down" href="#">Vòng cổ dây dắt</a></li>
+									<li>
+										<a class="caret-down" href="#">Vận chuyển chó</a>
+										<i class="fa fa-solid fa-caret-right"></i>
+										<ul class="item-smallest">
+											<li><a class="caret-down" href="#">túi balo</a></li>
+											<li><a class="caret-down" href="#">địu</a></li>
+											<li><a class="caret-down" href="#">lồng vận chuyển</a></li>
+										</ul>
+									</li>
+									<li>
+										<a class="caret-down" href="#">Đồ chơi cho chó</a>
+										<i class="fa fa-solid fa-caret-right"></i>
+										<ul class="item-smallest">
+											<li><a class="caret-down" href="#">đồ chơi huấn luyện</a></li>
+											<li><a class="caret-down" href="#">đồ chơi âm thanh</a></li>
+											<li><a class="caret-down" href="#">đồ chơi thư giản</a></li>
+											<li><a class="caret-down" href="#">đồ chơi cào gặm</a></li>
+											<li><a class="caret-down" href="#">đồ chơi vận động</a></li>
+										</ul>
+									</li>
+									<li>
+										<a class="caret-down" href="#">Dụng cụ sinh hoạt cho chó</a>
+										<i class="fa fa-solid fa-caret-right"></i>
+										<ul class="item-smallest">
+											<li><a class="caret-down" href="#">dụng cụ ăn uống</a></li>
+											<li><a class="caret-down" href="#">dụng cụ vệ sinh khử mùi</a></li>
+										</ul>
+									</li>
+									<li><a class="caret-down" href="#">Sữa tắm nước hoa cho chó</a></li>
+									<li><a class="caret-down" href="#">Lồng Nhà nệm</a></li>
+									<li><a class="caret-down" href="#">Dụng Cụ Grooming</a></li>
+
+								</ul>
+							</li>
+							<li class="nav-item"><a href="#">
+								Shop của mèo
+								<i class="fa fa-solid fa-caret-down"></i>
+							</a>
+								<ul class="item-small">
+									<li>
+										<a class="caret-down" href="#">Thức ăn cho mèo</a>
+										<i class="fa fa-solid fa-caret-right"></i>
+										<ul class="item-smallest">
+											<li><a class="caret-down" href="#">Thức ăn hạt khô</a></li>
+											<li><a class="caret-down" href="#">Pate</a></li>
+											<li><a class="caret-down" href="#">bánh thưởng snack</a></li>
+											<li><a class="caret-down" href="#">Sữa</a></li>
+										</ul>
+									</li>
+									<li>
+										<a class="caret-down" href="#">Thời trang cho mèo</a>
+										<i class="fa fa-solid fa-caret-right"></i>
+										<ul class="item-smallest">
+											<li><a class="caret-down" href="#">quần áo hằng ngày</a></li>
+											<li><a class="caret-down" href="#">quần áo lễ hội</a></li>
+											<li><a class="caret-down" href="#">giày vớ</a></li>
+											<li><a class="caret-down" href="#">phụ kiện thời trang</a></li>
+										</ul>
+									</li>
+									<li>
+										<a class="caret-down" href="#">Sức khỏe cho mèo</a>
+										<i class="fa fa-solid fa-caret-right"></i>
+										<ul class="item-smallest">
+											<li><a class="caret-down" href="#">thực phẩm sức khỏe</a></li>
+											<li><a class="caret-down" href="#">chăm sóc da lông</a></li>
+											<li><a class="caret-down" href="#">xổ giun</a></li>
+											<li><a class="caret-down" href="#">diệt ve rận bọ chét</a></li>
+											<li><a class="caret-down" href="#">tai mắt miệng</a></li>
+											<li><a class="caret-down" href="#">tiêu hóa tiết niệu</a></li>
+										</ul>
+									</li>
+									<li><a class="caret-down" href="#">Vòng cổ dây dắt</a></li>
+									<li>
+										<a class="caret-down" href="#">Vận chuyển mèo</a>
+										<i class="fa fa-solid fa-caret-right"></i>
+										<ul class="item-smallest">
+											<li><a class="caret-down" href="#">túi balo</a></li>
+											<li><a class="caret-down" href="#">địu</a></li>
+											<li><a class="caret-down" href="#">lồng vận chuyển</a></li>
+										</ul>
+									</li>
+									<li>
+										<a class="caret-down" href="#">Đồ chơi cho mèo</a>
+										<i class="fa fa-solid fa-caret-right"></i>
+										<ul class="item-smallest">
+											<li><a class="caret-down" href="#">đồ chơi huấn luyện</a></li>
+											<li><a class="caret-down" href="#">đồ chơi âm thanh</a></li>
+											<li><a class="caret-down" href="#">đồ chơi thư giản</a></li>
+											<li><a class="caret-down" href="#">đồ chơi cào gặm</a></li>
+											<li><a class="caret-down" href="#">đồ chơi vận động</a></li>
+										</ul>
+									</li>
+									<li>
+										<a class="caret-down" href="#">Dụng cụ sinh hoạt cho mèo</a>
+										<i class="fa fa-solid fa-caret-right"></i>
+										<ul class="item-smallest">
+											<li><a class="caret-down" href="#">dụng cụ ăn uống</a></li>
+											<li><a class="caret-down" href="#">dụng cụ vệ sinh khử mùi</a></li>
+										</ul>
+									</li>
+									<li><a class="caret-down" href="#">Sữa tắm nước hoa cho mèo</a></li>
+									<li><a class="caret-down" href="#">Lồng Nhà nệm</a></li>
+									<li><a class="caret-down" href="#">Dụng Cụ Grooming</a></li>
+
+								</ul>
+							</li>
+							<li class="nav-item"><a href="#">Liên hệ</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /MAIN HEADER -->
+		<script>
+			// Header(cái này để phần header vẫn đi theo khi cuộn)
+			var header = document.querySelector('#main-header');
+			var scrollable = 192;
+
+			window.onscroll = function() {
+				myFunc()
+			}
+
+			function myFunc() {
+				if(window.pageYOffset >= scrollable) {
+					header.classList.add('scrollable')
+				}else {
+					header.classList.remove('scrollable')
+				}
+			}
+		</script>
+	</header>
+	<!-- /HEADER -->
+
+		<!-- SECTION -->
+		<div class="section section-padding">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 col-xs-6">
+						<div class="shop">
+							<a class="shop-img" href="#">
+								<img src="https://bizweb.dktcdn.net/100/092/840/themes/885495/assets/bb1.jpg?1678853570350" alt="">
+							</a>
+						</div>
+					</div>
+
+					<div class="col-md-4 col-xs-6">
+						<div class="shop">
+							<a class="shop-img" href="#">
+								<img src="https://bizweb.dktcdn.net/100/092/840/themes/885495/assets/bb2.jpg?1678853570350" alt="">
+							</a>
+						</div>
+					</div>
+
+					<div class="col-md-4 col-xs-6">
+						<div class="shop">
+							<a class="shop-img" href="#">
+								<img src="https://bizweb.dktcdn.net/100/092/840/themes/885495/assets/bb3.jpg?1678853570350" alt="">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /SECTION -->
+	<section class="section_service container">
+		<div class="row justify-content-around">
+			<div class="col-lg-3 col-md-6">
+				<div class="itemsv">
+					<div class="image">
+						<img class="lazyload loaded" src="//bizweb.dktcdn.net/100/092/840/themes/885495/assets/ico_sv1.png?1678853570350" data-src="//bizweb.dktcdn.net/100/092/840/themes/885495/assets/ico_sv1.png?1678853570350" alt="Miễn phí" data-was-processed="true">
+					</div>
+					<div class="contentsv">
+						<h4>
+							Miễn phí
+						</h4>
+						<p>
+							Giao hàng nội thành HCM
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<div class="itemsv">
+					<div class="image">
+						<img class="lazyload loaded" src="//bizweb.dktcdn.net/100/092/840/themes/885495/assets/ico_sv2.png?1678853570350" data-src="//bizweb.dktcdn.net/100/092/840/themes/885495/assets/ico_sv2.png?1678853570350" alt="Đảm bảo" data-was-processed="true">
+					</div>
+					<div class="contentsv">
+						<h4>
+							Đảm bảo
+						</h4>
+						<p>
+							Chất lượng uy tín hàng đầu
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<div class="itemsv">
+					<div class="image">
+						<img class="lazyload loaded" src="//bizweb.dktcdn.net/100/092/840/themes/885495/assets/ico_sv3.png?1678853570350" data-src="//bizweb.dktcdn.net/100/092/840/themes/885495/assets/ico_sv3.png?1678853570350" alt="Hỗ trợ 24/7" data-was-processed="true">
+					</div>
+					<div class="contentsv">
+						<h4>
+							Hỗ trợ 24/7
+						</h4>
+						<p>
+							Chăm sóc khách hàng uy tín
+						</p>
+					</div>
+				</div>
+			</div>
+			<!-- <div class="col-lg-3 col-md-6">
+				<div class="itemsv">
+					<div class="image">
+						<img class="lazyload loaded" src="//bizweb.dktcdn.net/100/092/840/themes/885495/assets/ico_sv4.png?1678853570350" data-src="//bizweb.dktcdn.net/100/092/840/themes/885495/assets/ico_sv4.png?1678853570350" alt="Tư vấn bán hàng" data-was-processed="true">
+					</div>
+					<div class="contentsv">
+						<h4>
+							Tư vấn bán hàng
+						</h4>
+						<a href="tel:0786236336">
+							0786236336
+						</a>
+					</div>
+				</div>
+			</div> -->
+		</div>
+
+		<img src="//bizweb.dktcdn.net/100/092/840/themes/885495/assets/slider_2.jpg?1678853570350" alt="Miễn Phí Giao Hàng" class="img-responsive center-block">
+	</section>
+		<!-- SECTION -->
+		<div class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="section-title">
+							<h4 class="title"><a href="">DỤNG CỤ SINH HOẠT</a></h4>
+							<div id="slick-nav-1" class="products-slick-nav section-nav"></div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="products-tabs">
+							<div id="tab1" class="tab-pane active">
+								<div class="products-slick" data-nav="#slick-nav-1">
+									<div class="product">
+										<a class="product-img" href="#">
+											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
+												alt="">
+											<!-- <div class="product-label">
+																		<span class="sale">-30%</span>
+																		<span class="new">NEW</span>
+																	</div> -->
+										</a>
+										<div class="product-body">
+											<!-- <p class="product-category">Category</p> -->
+											<h3 class="product-name"><a href="#">product name goes here</a></h3>
+											<h4 class="product-price">$980.00</h4>
+											<!-- <div class="product-rating">
+																		<i class="fa fa-star"></i>
+																		<i class="fa fa-star"></i>
+																		<i class="fa fa-star"></i>
+																		<i class="fa fa-star"></i>
+																		<i class="fa fa-star"></i>
+																	</div> -->
+											<!-- <div class="product-btns">
+																		<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+																		<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+																		<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+																	</div> -->
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+												cart</button>
+										</div>
+									</div>
+		
+									<div class="product">
+										<a class="product-img" href="#">
+											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
+												alt="">
+										</a>
+										<div class="product-body">
+											<h3 class="product-name"><a href="#">product name goes here</a></h3>
+											<h4 class="product-price">$980.00</h4>
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+												cart</button>
+										</div>
+									</div>
+		
+									<div class="product">
+										<a class="product-img" href="#">
+											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
+												alt="">
+										</a>
+										<div class="product-body">
+											<h3 class="product-name"><a href="#">product name goes here</a></h3>
+											<h4 class="product-price">$980.00</h4>
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+												cart</button>
+										</div>
+									</div>
+		
+									<div class="product">
+										<a class="product-img" href="#">
+											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
+												alt="">
+										</a>
+										<div class="product-body">
+											<h3 class="product-name"><a href="#">product name goes here</a></h3>
+											<h4 class="product-price">$980.00</h4>
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+												cart</button>
+										</div>
+									</div>
+
+									<div class="product">
+										<a class="product-img" href="#">
+											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
+												alt="">
+										</a>
+										<div class="product-body">
+											<h3 class="product-name"><a href="#">product name goes here</a></h3>
+											<h4 class="product-price">$980.00</h4>
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+												cart</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /SECTION -->
+
+		<!-- HOT DEAL SECTION -->
+		
+		<!-- /HOT DEAL SECTION -->
+
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+
+					<!-- section title -->
+					<div class="col-md-12">
+						<div class="section-title">
+							<h4 class="title"><a href="">QUẦN ÁO THƯỜNG NGÀY</a></h4>
+							<div id="slick-nav-2" class="products-slick-nav section-nav"></div>
+						</div>
+					</div>
+					<!-- /section title -->
+
+					<!-- Products tab & slick -->
+					<div class="col-md-12">
+						<div class="products-tabs">
+							<div id="tab2" class="tab-pane active">
+								<div class="products-slick" data-nav="#slick-nav-2">
+									<div class="product">
+										<a class="product-img" href="#">
+											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
+												alt="">
+											<!-- <div class="product-label">
+																		<span class="sale">-30%</span>
+																		<span class="new">NEW</span>
+																	</div> -->
+										</a>
+										<div class="product-body">
+											<!-- <p class="product-category">Category</p> -->
+											<h3 class="product-name"><a href="#">product name goes here</a></h3>
+											<h4 class="product-price">$980.00</h4>
+											<!-- <div class="product-rating">
+																		<i class="fa fa-star"></i>
+																		<i class="fa fa-star"></i>
+																		<i class="fa fa-star"></i>
+																		<i class="fa fa-star"></i>
+																		<i class="fa fa-star"></i>
+																	</div> -->
+											<!-- <div class="product-btns">
+																		<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+																		<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+																		<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+																	</div> -->
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+												cart</button>
+										</div>
+									</div>
+		
+									<div class="product">
+										<a class="product-img" href="#">
+											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
+												alt="">
+										</a>
+										<div class="product-body">
+											<h3 class="product-name"><a href="#">product name goes here</a></h3>
+											<h4 class="product-price">$980.00</h4>
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+												cart</button>
+										</div>
+									</div>
+		
+									<div class="product">
+										<a class="product-img" href="#">
+											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
+												alt="">
+										</a>
+										<div class="product-body">
+											<h3 class="product-name"><a href="#">product name goes here</a></h3>
+											<h4 class="product-price">$980.00</h4>
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+												cart</button>
+										</div>
+									</div>
+		
+									<div class="product">
+										<a class="product-img" href="#">
+											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
+												alt="">
+										</a>
+										<div class="product-body">
+											<h3 class="product-name"><a href="#">product name goes here</a></h3>
+											<h4 class="product-price">$980.00</h4>
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+												cart</button>
+										</div>
+									</div>
+
+									<div class="product">
+										<a class="product-img" href="#">
+											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
+												alt="">
+										</a>
+										<div class="product-body">
+											<h3 class="product-name"><a href="#">product name goes here</a></h3>
+											<h4 class="product-price">$980.00</h4>
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+												cart</button>
+										</div>
+									</div>
+
+									
+								</div>
+								<!-- <div id="slick-nav-2" class="products-slick-nav"></div> -->
+							</div>
+						</div>
+					</div>
+					<!-- /Products tab & slick -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+		<!-- SECTION -->
+		<div class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="section-title">
+							<h4 class="title"><a href="">LỒNG NHÀ NỆM</a></h4>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="products-tabs product-last">
+							<!-- <div class="tab-pane active"> -->
+								<!-- <div class="products-slick"> -->
+									<div class="product">
+										<a class="product-img" href="#">
+											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
+												alt="">
+										</a>
+										<div class="product-body">
+											<!-- <p class="product-category">Category</p> -->
+											<h3 class="product-name"><a href="#">product name goes here</a></h3>
+											<h4 class="product-price">$980.00</h4>
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+												cart</button>
+										</div>
+									</div>
+		
+									<div class="product">
+										<a class="product-img" href="#">
+											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
+												alt="">
+										</a>
+										<div class="product-body">
+											<h3 class="product-name"><a href="#">product name goes here</a></h3>
+											<h4 class="product-price">$980.00</h4>
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+												cart</button>
+										</div>
+									</div>
+		
+									<div class="product">
+										<a class="product-img" href="#">
+											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
+												alt="">
+										</a>
+										<div class="product-body">
+											<h3 class="product-name"><a href="#">product name goes here</a></h3>
+											<h4 class="product-price">$980.00</h4>
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+												cart</button>
+										</div>
+									</div>
+		
+									<div class="product">
+										<a class="product-img" href="#">
+											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
+												alt="">
+										</a>
+										<div class="product-body">
+											<h3 class="product-name"><a href="#">product name goes here</a></h3>
+											<h4 class="product-price">$980.00</h4>
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+												cart</button>
+										</div>
+									</div>
+
+									<div class="product">
+										<a class="product-img" href="#">
+											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
+												alt="">
+										</a>
+										<div class="product-body">
+											<h3 class="product-name"><a href="#">product name goes here</a></h3>
+											<h4 class="product-price">$980.00</h4>
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+												cart</button>
+										</div>
+									</div>
+									
+									<!--product-->
+									<div class="product">
+										<a class="product-img" href="#">
+											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
+												alt="">
+										</a>
+										<div class="product-body">
+											<!-- <p class="product-category">Category</p> -->
+											<h3 class="product-name"><a href="#">product name goes here</a></h3>
+											<h4 class="product-price">$980.00</h4>
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+												cart</button>
+										</div>
+									</div>
+									<!--product-->
+
+									<!--product-->
+									<div class="product">
+										<a class="product-img" href="#">
+											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
+												alt="">
+										</a>
+										<div class="product-body">
+											<!-- <p class="product-category">Category</p> -->
+											<h3 class="product-name"><a href="#">product name goes here</a></h3>
+											<h4 class="product-price">$980.00</h4>
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+												cart</button>
+										</div>
+									</div>
+									<!--product-->
+
+									<!--product-->
+									<div class="product">
+										<a class="product-img" href="#">
+											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
+												alt="">
+										</a>
+										<div class="product-body">
+											<!-- <p class="product-category">Category</p> -->
+											<h3 class="product-name"><a href="#">product name goes here</a></h3>
+											<h4 class="product-price">$980.00</h4>
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+												cart</button>
+										</div>
+									</div>
+									<!--product-->
+								<!-- </div> -->
+								<!-- <div id="slick-nav-2" class="products-slick-nav"></div> -->
+							<!-- </div> -->
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /SECTION -->
+
+		<!-- NEWSLETTER -->
+
+
+		<!-- FOOTER -->
+		<footer id="footer">
+			<!-- top footer -->
+			<div class="section">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+						<div class="col-md-4 col-xs-6">
+							<div class="footer">
+								<h5 class="footer-title">Công ty TNHH PetSaigon</h5>
+								<p>Shop là tất cả tâm huyết của 1 nhóm bạn sinh viên Đại Học Nông Lâm với tinh thần khởi nghiệp.</p>
+								<ul class="footer-links">
+									<li><a href="#"><i class="fa fa-map-marker"></i>285/55 Cách Mạng Tháng Tám, phường 12, quận 10, thành phố Hồ Chí Minh.</a></li>
+									<li><a href="#"><i class="fa fa-phone"></i>028.38.68.36.79</a></li>
+									<li><a href="#"><i class="fa fa-envelope-o"></i>petsaigononline@gmail.com</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<!-- <div class="col-md-3 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">Categories</h3>
+								<ul class="footer-links">
+									<li><a href="#">Hot deals</a></li>
+									<li><a href="#">Laptops</a></li>
+									<li><a href="#">Smartphones</a></li>
+									<li><a href="#">Cameras</a></li>
+									<li><a href="#">Accessories</a></li>
+								</ul>
+							</div>
+						</div> -->
+
+						<div class="clearfix visible-xs"></div>
+
+						<div class="col-md-4 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">Information</h3>
+								<ul class="footer-links">
+									<li><a href="#">About Us</a></li>
+									<li><a href="#">Contact Us</a></li>
+									<li><a href="#">Privacy Policy</a></li>
+									<li><a href="#">Orders and Returns</a></li>
+									<li><a href="#">Terms & Conditions</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="col-md-4 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">Service</h3>
+								<ul class="footer-links">
+									<li><a href="#">My Account</a></li>
+									<li><a href="#">View Cart</a></li>
+									<li><a href="#">Wishlist</a></li>
+									<li><a href="#">Track My Order</a></li>
+									<li><a href="#">Help</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /row -->
+				</div>
+				<!-- /container -->
+			</div>
+			<!-- /top footer -->
+
+			<!-- bottom footer -->
+			<div id="bottom-footer" class="section">
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<ul class="footer-payments">
+								<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
+								<li><a href="#"><i class="fa fa-credit-card"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
+							</ul>
+							<span class="copyright">
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							</span>
+						</div>
+					</div>
+						<!-- /row -->
+				</div>
+				<!-- /container -->
+			</div>
+			<!-- /bottom footer -->
+		</footer>
+		<!-- /FOOTER -->
+
+		<!-- jQuery Plugins -->
+		<!--bootstrap-->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<!--bootstrap-end-->
+
+		<script src="js/slick.min.js"></script>
+		<script src="js/nouislider.min.js"></script>
+		<script src="js/jquery.zoom.min.js"></script>
+		<script src="js/main.js"></script>
+	</body>
+</html>

@@ -1,0 +1,75 @@
+body {
+    font-family: Helvetica Neue,sans-serif;
+}
+
+.container{
+	
+	border:1px solid black;
+	
+}
+
+span.title{
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+label {
+	width: 40%;
+}
+input {
+    height: 30px;
+    width: 246px;
+}
+
+
+.col-md-6.product {
+    border-left: 1px solid black;
+}
+
+.product-table td {
+    padding: 0px 14px;
+}
+
+.title_product {
+    padding: 14px 0px;
+    border-bottom: 1px solid black;
+}
+td.product__description {
+    display: grid;
+}
+
+img.product-thumbnail__image {
+    width: 60px;
+}
+
+td.product__price {
+    width: 116px;
+}
+
+.total {
+    width: 95%;
+    font-size: 20px;
+    padding: 11px 0px;
+    border-top: 1px solid black;
+}
+
+.total .totalPrice{
+	float:right;
+	color: #2a9dcc;
+}
+
+.summary{
+	width: 95%;
+	 padding: 11px 0px;
+}
+
+.summary button{
+	float:right;
+	background-color: #357ebd;
+    border-color: #2f71a9;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 500;
+    padding: .98em 1.7em;
+    text-align: center;
+}
