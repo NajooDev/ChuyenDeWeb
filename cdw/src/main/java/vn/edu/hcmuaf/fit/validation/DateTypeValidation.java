@@ -22,8 +22,8 @@ public class DateTypeValidation implements ConstraintValidator<ValidateDate, Dat
 		if((presentDate.compareTo(date) == -1)) {
 			return false;
 		}
-		System.out.println(date);
-		return !(date == null);
+		System.out.println("Trong validation date:"+date);
+		return true;
 	}
 
 }

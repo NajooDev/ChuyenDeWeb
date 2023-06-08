@@ -1,6 +1,8 @@
 package vn.edu.hcmuaf.fit.entity;
 
+import java.text.NumberFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -39,6 +41,14 @@ public class OrderDetail {
 	
 	public OrderDetail() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public OrderDetail(Product product) {
+		this.productOrder = product;
+		this.quality = 1;
+		this.dayOrder = new Date();
+		
+		setPrice();
 	}
 	
 	public Long getId() {
@@ -93,7 +103,12 @@ public class OrderDetail {
 		Date date = new Date();
 		this.dayOrder = date;
 	}
-
+	public String currencyFormat(){
+		Locale locale = new Locale("vi", "VN");
+		NumberFormat numberFormat = NumberFormat.getCurrencyInstance(locale);
+		String result = numberFormat.format(this.price);
+		return result;
+	}
 	@Override
 	public String toString() {
 		return "id: " + id + ", productOrder: " + productOrder + ", price: " + price + ", quality: " + quality +", day order: " +dayOrder;

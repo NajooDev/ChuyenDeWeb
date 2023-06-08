@@ -1,6 +1,6 @@
 package vn.edu.hcmuaf.fit.service.Imp;
 
-import vn.edu.hcmuaf.fit.entity.EmailDetails;
+import vn.edu.hcmuaf.fit.model.EmailDetails;
 import vn.edu.hcmuaf.fit.service.MailService;
 
 import javax.mail.*;
@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
+import java.util.Timer;
+import java.util.TimerTask;
 
 @Service
 public class MailServiceImp implements MailService{
@@ -20,9 +22,17 @@ public class MailServiceImp implements MailService{
 	 
 	 
 	@Override
-	public String sendSimpleMail(EmailDetails details) {
+	public void sendSimpleMail(EmailDetails details) {
 		// TODO Auto-generated method stub
-		return sendMail(details.getRecipient(), details.getSubject(), details.getMsgBody());
+		Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+            	sendMail(details.getRecipient(), details.getSubject(), details.getMsgBody());
+            }
+        };
+        // Lập lịch cho tác vụ thực thi sau 4 giây
+        timer.schedule(task, 4000);
 	}
 
 	public Session connect() {
@@ -42,11 +52,11 @@ public class MailServiceImp implements MailService{
         });
     }
 	
-	public String sendMail(String sendTo, String subject, String textMessage) {
+	public void sendMail(String sendTo, String subject, String textMessage) {
         Session session = connect();
         try {
             MimeMessage mimeMessage = new MimeMessage(session);
-            mimeMessage.setFrom(new InternetAddress(usernameBeingSend, "Cellphone Shop NDN"));//tên mà mình muốn đặt khi gửi(nếu để không chắc là nó sẽ hiện mail)
+            mimeMessage.setFrom(new InternetAddress(usernameBeingSend, "PetSaiGon"));//tên mà mình muốn đặt khi gửi(nếu để không chắc là nó sẽ hiện mail)
 
 //			chỗ sendTo ở dưới là email mình muốn gửi(trong trường hợp này là tự mình gửi cho mình)
             mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(sendTo));
@@ -57,10 +67,10 @@ public class MailServiceImp implements MailService{
             // send message
             Transport.send(mimeMessage);
 
-            return "Message sent successfully";
+            System.out.println("Message sent successfully");
         } catch (MessagingException | UnsupportedEncodingException e) {
 //			throw new RuntimeException(e);
-            return "Message error!";
+        	 System.out.println("Message error!");
         }
     }
 }

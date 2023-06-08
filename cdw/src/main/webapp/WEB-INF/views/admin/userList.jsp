@@ -154,7 +154,7 @@
                 <div class="row">
                     <div class="col-12 link-wrap">
                         <!-- item-->
-                        <a href="/" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i
+                        <a href="/logout" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i
                                 class="mdi mdi-power"></i></a>
                     </div>
                 </div>
@@ -344,8 +344,9 @@
      console.log(table);
 	//delete một dòng khi tag <a> class delete được nhấn trong dòng đó
      $('#myTable tbody').on( 'click', 'button.delete', function () {
-         table.row($(this).parents('tr')).remove().draw(); //thêm .draw() sau mỗi phương thức trong datatable để nó thay đổi
-         
+        /*  table.row($(this).parents('tr')).remove().draw(); //thêm .draw() sau mỗi phương thức trong datatable để nó thay đổi */
+         var thisRow = $(this).parents('tr');
+        
          let id =$(this).attr("uid");
          var data={"id": id};
 			$.ajax({
@@ -353,14 +354,16 @@
 		          contentType : "application/x-www-form-urlencoded; charset=UTF-8", //dữ liệu trong body muốn gửi là loại dữ liệu gì
 		          url : "/admin/deleteUser", //controller trả về json
 		          data : data, //dữ liệu muốn gửi
-		          dataType : 'json', //mong muốn response trả về loại dữ liệu gì
+		          dataType : 'text', //mong muốn response trả về loại dữ liệu gì
 		          cache : false, //Một giá trị Boolean cho biết liệu trình duyệt có lưu các trang được yêu cầu vào bộ đệm ẩn hay không. Mặc định là đúng
 		          timeout : 600000, //Thời gian chờ cục bộ (tính bằng mili giây) cho yêu cầu
-		          success : function(user) {
-		          	console.log(user);
+		          success : function(notification) {
+		        	alert(notification);
+		          	console.log(notification);
+		          	table.row(thisRow).remove().draw(); //thêm .draw() sau mỗi phương thức trong datatable để nó thay đổi
 		          },
 		          error : function() {
-		           alert("Error");
+		           alert("Không xóa được");
 		         }
 				});
      });
@@ -372,17 +375,17 @@
 		var data={"userid": userid, "permission" :permission };
 		$.ajax({
 			 type : "POST",
-	          contentType : "application/x-www-form-urlencoded; charset=UTF-8", //dữ liệu trong body muốn gửi là loại dữ liệu gì
-	          url : "/admin/updatePermission", //controller trả về json
-	          data : data, //dữ liệu muốn gửi
-	          dataType : 'json', //mong muốn response trả về loại dữ liệu gì
-	          cache : false, //Một giá trị Boolean cho biết liệu trình duyệt có lưu các trang được yêu cầu vào bộ đệm ẩn hay không. Mặc định là đúng
-	          timeout : 600000, //Thời gian chờ cục bộ (tính bằng mili giây) cho yêu cầu
-	          success : function(user) {
-	          	console.log(user);
+	          contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+	          url : "/admin/updatePermission",
+	          data : data,
+	          dataType : 'text', 
+	          cache : false, 
+	          timeout : 600000,
+	          success : function(notification) {
+	          	alert(notification);
 	          },
 	          error : function() {
-	           alert("Error");
+	           alert("Thay đổi quyền không thành công");
 	         }
 			});
 	});

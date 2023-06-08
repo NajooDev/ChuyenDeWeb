@@ -168,7 +168,7 @@
                 <div class="row">
                     <div class="col-12 link-wrap">
                         <!-- item-->
-                        <a href="/" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i
+                        <a href="/logout" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i
                                 class="mdi mdi-power"></i></a>
                     </div>
                 </div>
@@ -233,11 +233,11 @@
                         </div>
                         
                         <div class="sub_img">
-                        	<img src="${small_img_1}"
+                        	<img src="${productInAdmin.small_img_1}"
                                         class="img_small_1" width="100" />
-                            <img src="${small_img_2}"
+                            <img src="${productInAdmin.small_img_2}"
                                         class="img_small_2" width="100" />
-                            <img src="${small_img_3}"
+                            <img src="${productInAdmin.small_img_3}"
                                         class="img_small_3" width="100" />
                         </div>
                         
@@ -246,19 +246,22 @@
                         		<div class="form-group">
                                  	<label class="col-md-12 mb-0">Image small 1</label>
                                  	<div class="col-md-12">
-                                    	<input type="text" class="form-control ps-0 form-control-line img_small_link_1" name="small_img_1" value="${small_img_1}">
+                                    	<form:input type="text" path="small_img_1"
+                                                class="form-control ps-0 form-control-line img_small_link_1" />
                                  	</div>
                             	</div>
                             	<div class="form-group">
                                  	<label class="col-md-12 mb-0">Image small 2</label>
                                  	<div class="col-md-12">
-                                    	<input type="text" class="form-control ps-0 form-control-line img_small_link_2" name="small_img_2" value="${small_img_2}">
+                                    	<form:input type="text" path="small_img_2"
+                                                class="form-control ps-0 form-control-line img_small_link_2" />
                                  	</div>
                             	</div>
                             	<div class="form-group">
                                  	<label class="col-md-12 mb-0">Image small 3</label>
                                  	<div class="col-md-12">
-                                    	<input type="text" class="form-control ps-0 form-control-line img_small_link_3" name="small_img_3" value="${small_img_3}">
+                                    	<form:input type="text" path="small_img_3"
+                                                class="form-control ps-0 form-control-line img_small_link_3" />
                                  	</div>
                             	</div>
                             </div>
@@ -284,7 +287,7 @@
                                         <div class="col-md-12">
                                             <form:input path="price" 
                                                 class="form-control ps-0 form-control-line" name="example-email"
-                                                id="example-email" onblur="if(this.value == '') {this.value = '0';}" onfocus="this.value = '';"/>
+                                                id="example-email" onblur="if(this.value == '') {this.value = '${productInAdmin.price}';}" onfocus="this.value = '';"/>
                                         </div>
                                         <form:errors path="price" cssClass="error" />
                                     </div>
@@ -297,18 +300,18 @@
                                         <form:errors path="img" cssClass="error" />
                                     </div>
                                     <div class="form-group">
-                                        <form:label path="CategoryBig.categoryName" class="col-sm-12">Category Big</form:label>
+                                        <form:label path="categoryBig" class="col-sm-12">Category Big</form:label>
                                         <div  class="col-sm-12 border-bottom">
-                                            <form:select path="CategoryBig.categoryName" items="${cateBig}" class="form-select shadow-none ps-0 border-0 form-control-line" value="CategoryBig.id"/>
+                                            <form:select path="categoryBig" items="${cateBig}" class="form-select shadow-none ps-0 border-0 form-control-line" value="CategoryBig.id"/>
                                         </div>
-                                        <form:errors path="CategoryBig.categoryName" cssClass="error" />
+                                        <form:errors path="categoryBig" cssClass="error" />
                                     </div>
                                     <div class="form-group">
-                                        <form:label path="categorySmall.categoryName" class="col-sm-12">Category Small</form:label>
+                                        <form:label path="categorySmall" class="col-sm-12">Category Small</form:label>
                                         <div  class="col-sm-12 border-bottom">
-                                            <form:select path="categorySmall.categoryName" items="${cateSmall}" class="form-select shadow-none ps-0 border-0 form-control-line" />
+                                            <form:select path="categorySmall" items="${cateSmall}" class="form-select shadow-none ps-0 border-0 form-control-line" />
                                         </div>
-                                        <form:errors path="categorySmall.categoryName" cssClass="error" />
+                                        <form:errors path="categorySmall" cssClass="error" />
                                     </div>
                                     <div class="form-group">
                                         <form:label path="description" class="col-md-12 mb-0">Description</form:label>

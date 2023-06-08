@@ -30,11 +30,11 @@
 			<div class="container">
                 <ul class="breadcrumb">					
                     <li class="home">
-                        <a href="/"><span>Trang chủ</span></a>						
+                        <a href="/u"><span>Trang chủ</span></a>						
                         <!-- <span class="mr_lr">&nbsp;/&nbsp;</span> -->
                     </li>
                     <li>
-                        <a class="changeurl" href="/do-cho-meo-shop-cho-meo"><span>${productDetail.categoryBig.categoryName}</span></a>						
+                        <a class="changeurl" href="/u/categoryBig/${productDetail.categoryBig.id}"><span>${productDetail.categoryBig.categoryName}</span></a>						
                         <!-- <span class="mr_lr">&nbsp;/&nbsp;</span> -->
                     </li>
         
@@ -116,7 +116,7 @@
 								<a class="review-link">Xem 3 đánh giá</a>
 							</div>
 							<div>
-								<h3 class="product-price"><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${productDetail.price}" />đ</h3>
+								<h3 class="product-price">${productDetail.currencyFormat()}</h3>
 								<span class="product-available">In Stock</span>
 							</div>
                             <div class="number_product">
@@ -164,7 +164,7 @@
 							<!-- /product tab nav -->
 
 							<!-- product tab content -->
-							<div class="tab-content">
+							<div class="tab-content" style="background-color: white;">
 								<!-- tab1  -->
 								<div id="tab1" class="tab-pane fade in active">
 									<div class="row">
@@ -386,66 +386,19 @@
                         <div class="products-tabs product-last">
                             <!-- <div class="tab-pane active"> -->
                             <!-- <div class="products-slick"> -->
-                            <div class="product">
-                                <a class="product-img" href="#">
-                                    <img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
-                                        alt="">
-                                </a>
-                                <div class="product-body">
-                                    <!-- <p class="product-category">Category</p> -->
-                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                    <h4 class="product-price">$980.00</h4>
-                                </div>
-                                <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
-                                        cart</button>
-                                </div>
-                            </div>
-        
-                            <div class="product">
-                                <a class="product-img" href="#">
-                                    <img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
-                                        alt="">
-                                </a>
-                                <div class="product-body">
-                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                    <h4 class="product-price">$980.00</h4>
-                                </div>
-                                <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
-                                        cart</button>
-                                </div>
-                            </div>
-        
-                            <div class="product">
-                                <a class="product-img" href="#">
-                                    <img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
-                                        alt="">
-                                </a>
-                                <div class="product-body">
-                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                    <h4 class="product-price">$980.00</h4>
-                                </div>
-                                <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
-                                        cart</button>
-                                </div>
-                            </div>
-        
-                            <div class="product">
-                                <a class="product-img" href="#">
-                                    <img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
-                                        alt="">
-                                </a>
-                                <div class="product-body">
-                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                    <h4 class="product-price">$980.00</h4>
-                                </div>
-                                <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
-                                        cart</button>
-                                </div>
-                            </div>
+        					<c:forEach items="${productListDetail}" var="product">
+                            	<div class="product">
+                                	<a class="product-img" href="#">
+                                    	<img src="${product.img}" alt="">
+                                	</a>
+                                	<div class="product-body">
+                                    	<h3 class="product-name"><a href="/u/productDetail/${product.id}">${product.productName}</a></h3>
+                                    	<h4 class="product-price">${product.currencyFormat()}</h4>
+                                	</div>
+                                
+                            	</div>
+        					</c:forEach>
+                            
                             <!--product-->
                         </div>
                     </div>
@@ -571,12 +524,12 @@ $(document).ready(function() {
 		var data={"id": id, "quality" :number};
 		$.ajax({
 			 type : "POST",
-	          contentType : "application/x-www-form-urlencoded; charset=UTF-8", //dữ liệu trong body muốn gửi là loại dữ liệu gì
-	          url : "/addProduct", //controller trả về json
-	          data : data, //dữ liệu muốn gửi
-	          dataType : 'json', //mong muốn response trả về loại dữ liệu gì
-	          cache : false, //Một giá trị Boolean cho biết liệu trình duyệt có lưu các trang được yêu cầu vào bộ đệm ẩn hay không. Mặc định là đúng
-	          timeout : 600000, //Thời gian chờ cục bộ (tính bằng mili giây) cho yêu cầu
+	          contentType : "application/x-www-form-urlencoded; charset=UTF-8", 
+	          url : "/u/addProduct",
+	          data : data, 
+	          dataType : 'json', 
+	          cache : false, 
+	          timeout : 600000, 
 	          success : function(orderProduct) {
 	        	  
 	        	  cartList.empty();

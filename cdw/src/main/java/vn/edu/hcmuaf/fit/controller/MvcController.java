@@ -1,11 +1,7 @@
 package vn.edu.hcmuaf.fit.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,8 +9,6 @@ import javax.validation.Valid;
 
 import org.apache.http.client.ClientProtocolException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,35 +16,41 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import vn.edu.hcmuaf.fit.entity.*;
-import vn.edu.hcmuaf.fit.repository.CategoryBigRepository;
-import vn.edu.hcmuaf.fit.repository.ProductRepository;
-import vn.edu.hcmuaf.fit.repository.UserRepository;
+
+import vn.edu.hcmuaf.fit.model.EmailDetails;
+import vn.edu.hcmuaf.fit.model.GooglePojo;
+
 import vn.edu.hcmuaf.fit.service.MailService;
 import vn.edu.hcmuaf.fit.service.MvcService;
 
 @Controller
+@RequestMapping("/u")
 public class MvcController {
 	
 	@Autowired MvcService mvcService;
 	@Autowired MailService mailService;
 	
-	@GetMapping("/")
+	@GetMapping("")
 	public String homeForm(Model model, HttpSession session) {
 		
+		//TẠO ĐỐI TƯỢNG ORDER ĐỂ LÀM GIỎ HÀNG  
 		if(session.getAttribute("order") == null) {
 			OrderProduct op = new OrderProduct();
 			op.setStatusOrder(1);
 			session.setAttribute("order", op);
 		}
+		
+		//HIỂN THỊ 3 CATEGORY (H ĐANG CHƯA CÓ ĐỦ 3 CÁI NÊN NÓ HIỆN LỖI)
 		long id = 8;
 		List<Product> produtList =mvcService.findByIdCategoryBig(id, 1,5);
 		
 		session.setAttribute("productList1", produtList);
-		
+		 
 		
 		long id2 = 3;
 		List<Product> produtList2 =mvcService.findByIdCategoryBig(id2, 1,5);
@@ -60,11 +60,15 @@ public class MvcController {
 		long id3 = 10;
 		List<Product> produtList3 =mvcService.findByIdCategoryBig(id3, 1,8);
 		
-		session.setAttribute("productList3", produtList3);
+		session.setAttribute("productList3", produtList3);  
 		
 		
 		return "home";
 	}
+	
+	/**
+	 * 				USER
+	 */
 	
 	@GetMapping("/login")
 	public String loginForm(Model model) {
@@ -82,9 +86,6 @@ public class MvcController {
 		String username = http.getParameter("username");
 		String password = http.getParameter("password");
 		
-//		User user = this.userRepository.findByUserName(username);// == null nếu không tìm ra được
-//		
-//		System.out.println(user);
 		if(!mvcService.checkUser(username, password)) {
 			model.addAttribute("error","* Username và password không đúng");
 			return "Login";
@@ -100,30 +101,22 @@ public class MvcController {
 	public String googleLogin(Model model, HttpServletRequest http, HttpSession session) throws ClientProtocolException, IOException {
 		
 		String code = http.getParameter("code");//nhận code được google gửi qua (đây là refesh token)
-		System.out.println(code);
-		if (code == null || code.isEmpty()) {
-            return "login";
+		System.out.println("this is code:"+code);
+		if (code.isEmpty()) {
+            return "Login";
         }
             String accessToken = mvcService.getGoogleToken(code); //lấy accessToken( hoặc gọi là authenticationToken) bằng refesh token, App Secret và URL
-            GooglePojo googlePojo = mvcService.getGoogleUserInfo(accessToken); //Lấy user info
+            GooglePojo googlePojo = mvcService.getGoogleUserInfo(accessToken); //Lấy user info bằng accessToken
             System.out.println(googlePojo);
 		
             String name = googlePojo.getName();
             String email = googlePojo.getEmail();
             
-            User user = new User();
-            if(mvcService.getUserByEmail(email) == null) {
-            	user.setUserName(name);
-            	user.setEmail(email);
-            	user.setAddress("Empty");
-            	user.setBirthday(new Date());
-            	user.setUserPermission("user");
-            	user.setPassword("no password");
-            	user.setSex("Nam");
-            	user.setPhone("Empty");
+            User user = mvcService.getUserByEmail(email);
+            if( user == null) {
+            	user = mvcService.createUserByUsernameAndEmail(name, email);
             	mvcService.saveUser(user);
             }
-            user = mvcService.getUserByEmail(email);
             session.setAttribute("user", user);
 		return "home";
 	}
@@ -138,51 +131,133 @@ public class MvcController {
 		return "signUp";
 	}
 	
-//	@GetMapping("/signUp2")
-//	public String signUpForm2(Model model) {
-//		
-//		return "signUp2";
-//	}
 	
 	@PostMapping("/signUp")
 	public String registerUser(@Valid @ModelAttribute("userRegister") User userRegister,
 			BindingResult bindingResult, Model model) {
 		
-		System.out.println("Professing form...");
 		System.out.println(userRegister);
 		
 		System.out.println(bindingResult);
 		if (bindingResult.hasErrors()) {	
 			return "signUp";
+			
+		}else if(mvcService.checkUsernameExist(userRegister)) {
+			model.addAttribute("userName_error", "UserName đã tồn tại");
+			return "signUp";
+			
+		}else if(mvcService.checkEmailExist(userRegister)){
+			model.addAttribute("email_error", "email đã tồn tại");
+			return "signUp";
 		}
-		
-//		Long id = this.userRepository.getMaxId() +1;
-//		userRegister.setId(id);
-//		
-//		this.userRepository.save(userRegister);
 		
 		//set user_permission là user
 		userRegister.setUserPermission("user");
+		
 		//gửi mail khi đăng ký
 		EmailDetails ed = new EmailDetails(userRegister.getEmail(), "Tin nhắn này là để xác nhận khách hàng vừa mới đăng ký tài khoảng trên shop của chúng tôi", "Xác nhận đăng ký tài khoảng!");
-		System.out.println(mailService.sendSimpleMail(ed));
+		
+		mailService.sendSimpleMail(ed);
 		
 		mvcService.saveUser(userRegister);
 		return "Login";
 	}
 	
+	
+	@GetMapping("/showUser")
+	public String updateUserForm(Model model,HttpSession session) {
+		
+		User user =(User) session.getAttribute("user");
+
+		List<OrderProduct> op = mvcService.getOrderProductByUser(user);
+		
+		model.addAttribute("userOrderProduct", op);
+		model.addAttribute("userShow", user);
+		return "updateUser";
+	}
+	
+	@PostMapping("/updateUser")
+	public String updateUser(@Valid @ModelAttribute("userShow") User userUpdate,
+			BindingResult bindingResult, Model model, HttpSession session) {
+		
+		if (bindingResult.hasErrors()) {	
+			List<OrderProduct> op = mvcService.getOrderProductByUser(userUpdate);
+			
+			model.addAttribute("userOrderProduct", op);
+			return "updateUser";
+			
+		}else if(mvcService.checkUsernameExist(userUpdate)) {
+			List<OrderProduct> op = mvcService.getOrderProductByUser(userUpdate);
+			
+			model.addAttribute("userOrderProduct", op);
+			model.addAttribute("userName_error", "UserName đã tồn tại");
+			return "updateUser";
+		}else if(mvcService.checkEmailExist(userUpdate)){
+			model.addAttribute("email_error", "email đã tồn tại");
+			List<OrderProduct> op = mvcService.getOrderProductByUser(userUpdate);
+			
+			model.addAttribute("userOrderProduct", op);
+			return "updateUser";
+		}
+	
+		mvcService.saveUser(userUpdate);
+		//cập nhật lại tài khoảng người dùng trong session
+		session.setAttribute("user", userUpdate);
+		return "home";
+	}
+	
+	@GetMapping("/getBackPassword")
+	public String getBackPasswordForm(Model model) {
+		return "GetBackPassword";
+	}
+	
+	@PostMapping("/getBackPassword")
+	public String getBackPassword(Model model, @RequestParam String username, @RequestParam String email) {
+		
+		if(username.isEmpty() || email.isEmpty()) {
+			model.addAttribute("error", "* Thông tin không được để trống");
+			return "GetBackPassword";
+		}
+		
+		User user= mvcService.getUserByUserName(username);
+		if(user == null || !user.getEmail().equalsIgnoreCase(email)) {
+			model.addAttribute("error", "* Nguời dùng không tồn tại");
+			return "GetBackPassword";
+		}
+		
+		//đổi lại mật khẩu là 123 và gửi cho khách hàng
+		user.setPassword("123");
+		this.mvcService.saveUser(user);
+		//gửi mail xác nhận
+		EmailDetails ed = new EmailDetails(email, "Mật khẩu của quý khách đã được đổi lại là : 123\n Quý khách vui lòng thay đổi lại mật khẩu sau khi đăng nhập", "Lấy lại mật khẩu!");
+		
+		mailService.sendSimpleMail(ed);
+		
+		model.addAttribute("message", "Mật khẩu của quý khách đã được gửi đến email: "+ email);
+		return "GetBackPassword";
+	}
+	
+	
+	/**
+	 * 
+	 *	PRODUCT
+	 */
 	@GetMapping("/productDetail/{id}")
-	public String productDetailForm(Model model,@PathVariable long id) {
+	public String productDetailForm(Model model, HttpSession session,@PathVariable long id) {
 		
 		Product product = mvcService.getProductById(id);
 		model.addAttribute("productDetail", product);
+		
+		List<Product> produtList =mvcService.findByIdCategoryBig(product.getCategoryBig().getId(), 1,4);
+		
+		model.addAttribute("productListDetail", produtList);
 		return "ProductDetail";
 	}
 	
 	@GetMapping("/categoryBig/{categoryId}")
 	public String storePageForm(Model model,@PathVariable long categoryId,HttpServletRequest http) {
 		
-		int productPerPage = 1;
+		int productPerPage = 8;
 		int page; //trang hiện tại(nếu mới đầu thì auto page =1)
 
         String pageString = http.getParameter("page");
@@ -196,12 +271,11 @@ public class MvcController {
 		List<Product> produtList =mvcService.findByIdCategoryBig(categoryId, page, productPerPage);
 		model.addAttribute("productList", produtList);
 		
+		//show page
 		int totalProduct = mvcService.getTotalProductByIdCategoryBig(categoryId);
-		int totalPage = totalProduct/productPerPage;
-		if(totalProduct%productPerPage !=0) {
-			totalPage++;
-		}
-		System.out.println(totalPage);
+		
+		int totalPage = mvcService.getTotalPage(totalProduct, productPerPage);
+		
 		model.addAttribute("totalpage", totalPage);
 		
 		model.addAttribute("pageSelected", page);
@@ -214,7 +288,7 @@ public class MvcController {
 	@GetMapping("/categorySmall/{categoryId}")
 	public String storeCategorySmallForm(Model model,@PathVariable long categoryId,HttpServletRequest http) {
 		
-		int productPerPage = 1;
+		int productPerPage = 8;
 		int page; //trang hiện tại(nếu mới đầu thì auto page =1)
 
         String pageString = http.getParameter("page");
@@ -228,12 +302,10 @@ public class MvcController {
 		List<Product> produtList =mvcService.findByIdCategorySmall(categoryId, page, productPerPage);
 		model.addAttribute("productList", produtList);
 		
+		//show page
 		int totalProduct = mvcService.getTotalProductByIdCategorySmall(categoryId);
-		int totalPage = totalProduct/productPerPage;
-		if(totalProduct%productPerPage !=0) {
-			totalPage++;
-		}
-		System.out.println(totalPage);
+		int totalPage = mvcService.getTotalPage(totalProduct, productPerPage);
+		
 		model.addAttribute("totalpage", totalPage);
 		
 		model.addAttribute("pageSelected", page);
@@ -244,11 +316,11 @@ public class MvcController {
 	}
 	
 	@PostMapping("/search_mini")
-	public @ResponseBody List<Product> testAjax2(@RequestParam String data) {
+	public @ResponseBody List<Product> testAjax2(@RequestParam String name) {
 
 //		System.out.println(data);
 		
-		List<Product> result = mvcService.getProductByProductName(data, 1, 6);
+		List<Product> result = mvcService.getProductByProductName(name, 1, 6);
 		
 		return result;
 	}
@@ -258,7 +330,7 @@ public class MvcController {
 		
 		String productName = http.getParameter("productName");
 		
-		int productPerPage = 1;
+		int productPerPage = 8;
 		int page; //trang hiện tại(nếu mới đầu thì auto page =1)
 
         String pageString = http.getParameter("page");
@@ -271,12 +343,11 @@ public class MvcController {
         List<Product> result = mvcService.getProductByProductName(productName, page, productPerPage);
 		model.addAttribute("productList", result);
 		
+		//show page
 		int totalProduct = mvcService.getTotalProductByName(productName);
-		int totalPage = totalProduct/productPerPage;
-		if(totalProduct%productPerPage !=0) {
-			totalPage++;
-		}
-		System.out.println(totalPage);
+		
+		int totalPage = mvcService.getTotalPage(totalProduct, productPerPage);
+		
 		model.addAttribute("totalpage", totalPage);
 		
 		model.addAttribute("pageSelected", page);
@@ -285,56 +356,24 @@ public class MvcController {
 	}
 	
 	@PostMapping("/addProduct")
-	public @ResponseBody OrderProduct addProductToCard(Model model, HttpServletRequest http, HttpSession session,@RequestParam long id, @RequestParam int quality) {
+	public @ResponseBody OrderProduct addProductToCard(Model model, HttpSession session,@RequestParam long id, @RequestParam int quality) {
 		
 		OrderProduct op =(OrderProduct) session.getAttribute("order");
-		
+		 
 		Product product = mvcService.getProductById(id);
 		if(op.alreadyHaveProduct(product)) {
 			
-			op.findOrderDetailByProduct(product).addQuality(quality);
-			op.findOrderDetailByProduct(product).setPrice();
-			
-			op.setTotalPrice();
+			mvcService.addQualityToOrderProduct(op, product, quality);
 		} else {
-			OrderDetail od = new OrderDetail();
-			od.setProductOrder(product);
-			od.setQuality(1);
-			od.setPrice();
-			od.setDayOrder();
-
+			OrderDetail od = new OrderDetail(product);
+			
 			op.putOrderDetail(od);
 			op.setTotalPrice();
 		}
 		
 		session.setAttribute("order", op);
-		session.setAttribute("orderDetail", op.getOrderdetails());
 		System.out.println(op);
-		return op;
-	}
-	
-	@PostMapping("/saveOrder")
-	public String saveOrder(Model model,HttpSession session,HttpServletRequest http) {
-		String otherAddress = http.getParameter("otherAddress");
-		
-		System.out.println(otherAddress);
-		User user =(User) session.getAttribute("user");
-		
-		OrderProduct op = (OrderProduct)session.getAttribute("order");
-		op.setUserOrder(user);
-		op.setOtherAddress(otherAddress);
-		mvcService.saveOrderProduct(op); 
-		
-		op = new OrderProduct();
-		op.setStatusOrder(1);
-		session.setAttribute("order", op);
-		session.removeAttribute("orderDetail");
-		
-		//gửi mail xác nhận
-		EmailDetails ed = new EmailDetails(user.getEmail(), "Cảm ơn quý khách đã mua hàng của chúng tôi", "Xác nhận mua hàng!");
-		System.out.println(mailService.sendSimpleMail(ed));
-		
-		return "home";
+		return op; 
 	}
 	
 	@PostMapping("/deleteProduct")
@@ -351,7 +390,6 @@ public class MvcController {
 		}
 		
 		session.setAttribute("order", op);
-		session.setAttribute("orderDetail", op.getOrderdetails());
 		System.out.println(op);
 		return op;
 	}
@@ -363,17 +401,14 @@ public class MvcController {
 	}
 	
 	@PostMapping("/addQuantityInCard")
-	public @ResponseBody OrderProduct addQuantityInCard(Model model, HttpServletRequest http, HttpSession session,@RequestParam long idProduct, @RequestParam int quantity) {
+	public @ResponseBody OrderProduct addQuantityInCard(Model model, HttpSession session,@RequestParam long idProduct, @RequestParam int quantity) {
 		OrderProduct op =(OrderProduct) session.getAttribute("order");
 		
 		Product product = mvcService.getProductById(idProduct);
-		op.findOrderDetailByProduct(product).setQuality(quantity);
-		op.findOrderDetailByProduct(product).setPrice();
+		
+		mvcService.addQualityToOrderProduct(op, product, quantity);
 		
 		session.setAttribute("order", op);
-		session.setAttribute("orderDetail", op.getOrderdetails());
-		
-		op.setTotalPrice();
 		return op;
 	}
 	
@@ -381,73 +416,38 @@ public class MvcController {
 	public String checkoutForm(Model model,HttpSession session) {
 		
 		User user =(User) session.getAttribute("user");
+		
+		OrderProduct op = (OrderProduct)session.getAttribute("order");
 		if(user == null) {
 			return "Login";
+		}
+		if(op.getTotalOrder() == 0) {
+			return "cart";
 		}
 		return "checkout";
 	}
 	
-	@GetMapping("/showUser")
-	public String updateUserForm(Model model,HttpSession session) {
+	@PostMapping("/saveOrder")
+	public String saveOrder(Model model,HttpSession session, @RequestParam String otherAddress) {
+//		String otherAddress = http.getParameter("otherAddress");
+		
+		System.out.println(otherAddress);
 		
 		User user =(User) session.getAttribute("user");
-		List<OrderDetail> allOrderDetail = new ArrayList<>();
 		
-		for(OrderProduct op : mvcService.getOrderProductByUser(user)) {
-			allOrderDetail.addAll(op.getOrderdetails());
-		}
+		OrderProduct op = (OrderProduct)session.getAttribute("order");
+		op.setUserOrder(user);
+		op.setOtherAddress(otherAddress);
+		mvcService.saveOrderProduct(op); 
 		
-		model.addAttribute("userOrderDetail", allOrderDetail);
-		model.addAttribute("userShow", user);
-		return "updateUser";
-	}
-	
-	@PostMapping("/updateUser")
-	public String updateUser(@Valid @ModelAttribute("userShow") User userUpdate,
-			BindingResult bindingResult, Model model) {
+		op = new OrderProduct();
+		op.setStatusOrder(1);
+		session.setAttribute("order", op);
 		
-		System.out.println("Professing form...");
-		System.out.println(userUpdate);
-		
-		System.out.println(bindingResult);
-		if (bindingResult.hasErrors()) {	
-			return "updateUser";
-		}
-		
-//		Long id = this.userRepository.getMaxId() +1;
-//		userRegister.setId(id);
-//		
-//		this.userRepository.save(userRegister);
-		mvcService.saveUser(userUpdate);
-		return "home";
-	}
-	
-	@GetMapping("/getBackPassword")
-	public String getBackPasswordForm(Model model) {
-		return "GetBackPassword";
-	}
-	
-	@PostMapping("/getBackPassword")
-	public String getBackPassword(Model model, HttpServletRequest http) {
-		
-		String username = http.getParameter("username");
-		String email = http.getParameter("email");
-		
-		if(username.isEmpty() || email.isEmpty()) {
-			model.addAttribute("error", "* Thông tin không được để trống");
-			return "GetBackPassword";
-		}
-		
-		User user= mvcService.getUserByUserName(username);
-		if(user == null || !user.getEmail().equalsIgnoreCase(email)) {
-			model.addAttribute("error", "* Nguời dùng không tồn tại");
-			return "GetBackPassword";
-		}
 		//gửi mail xác nhận
-		EmailDetails ed = new EmailDetails(email, "Mật khẩu của quý khách là : "+ user.getPassword(), "Lấy lại mật khẩu!");
-		System.out.println(mailService.sendSimpleMail(ed));
+		EmailDetails ed = new EmailDetails(user.getEmail(), "Cảm ơn quý khách đã mua hàng của chúng tôi", "Xác nhận mua hàng!");
+		mailService.sendSimpleMail(ed);
 		
-		model.addAttribute("message", "Mật khẩu của quý khách đã được gửi đến email: "+ email);
-		return "GetBackPassword";
+		return "home";
 	}
 }

@@ -35,7 +35,7 @@
 
 <!--CENTER-->
 <div class="center">
-    <form action="/login" method="post">
+    <form action="/u/login" method="post">
         <div class="outer_wrap">
             <div class="in_wrap">
                 <div class="center_title">
@@ -51,8 +51,8 @@
                 <input type="checkbox" onclick="myFunction()">Show Password
 
                 <div class="signUp">
-                    <a href="GetBackPassword.jsp">Quên mật khẩu</a>
-                    <a href="signUp.jsp">Đăng ký</a>
+                    <a href="/u/getBackPassword">Quên mật khẩu</a>
+                    <a href="/u/signUp">Đăng ký</a>
                 </div>
 
                 <div class="Login">
@@ -63,7 +63,7 @@
 <%--                    </div>--%>
                     <div class="formGroup google">
                         <i class="fa fa-google"></i>
-                        <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile&redirect_uri=http://localhost:8080/loginGoogle&response_type=code
+                        <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile&redirect_uri=http://localhost:8080/u/loginGoogle&response_type=code
     &client_id=1040664649135-i77husqacdhjaao826mn1cpnkgncv9aj.apps.googleusercontent.com&approval_prompt=force" class="login_facebook">Đăng nhập bằng google</a>
                     </div>
                     <!-- <button class="facebook"></button> -->
@@ -179,14 +179,14 @@
 <!-- /FOOTER -->
 
 <!-- jQuery Plugins -->
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/slick.min.js"></script>
-<script src="js/nouislider.min.js"></script>
-<script src="js/jquery.zoom.min.js"></script>
-<script src="js/main.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/slick.min.js"></script>
+<script src="/js/nouislider.min.js"></script>
+<script src="/js/jquery.zoom.min.js"></script>
+<script src="/js/main.js"></script>
 
-<script src="js/cdw.js"></script>
+<script src="/js/cdw.js"></script>
 
 </body>
 </html>

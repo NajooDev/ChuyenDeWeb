@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -154,7 +155,7 @@
                 <div class="row">
                     <div class="col-12 link-wrap">
                         <!-- item-->
-                        <a href="/" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i
+                        <a href="/logout" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i
                                 class="mdi mdi-power"></i></a>
                     </div>
                 </div>
@@ -222,7 +223,7 @@
                                         <c:forEach items="${orderListInAdmin}" var="order">
                                             <tr>
                                                 <td>${order.userOrder.userName}</td>  
-                                                <td>${order.totalPrice}</td>
+                                                <td><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${order.totalPrice}" />đ</td>
                                                 <td>${order.orderdetails[0].dayOrder}</td>
 													<td>
 													<p hidden>${order.id}</p>
@@ -340,11 +341,11 @@
     	          contentType : "application/x-www-form-urlencoded; charset=UTF-8", //dữ liệu trong body muốn gửi là loại dữ liệu gì
     	          url : "/admin/updateStatusOrder", //controller trả về json
     	          data : data, //dữ liệu muốn gửi
-    	          dataType : 'json', //mong muốn response trả về loại dữ liệu gì
+    	          dataType : 'text', //mong muốn response trả về loại dữ liệu gì
     	          cache : false, //Một giá trị Boolean cho biết liệu trình duyệt có lưu các trang được yêu cầu vào bộ đệm ẩn hay không. Mặc định là đúng
     	          timeout : 600000, //Thời gian chờ cục bộ (tính bằng mili giây) cho yêu cầu
-    	          success : function(order) {
-    	          	console.log(order);
+    	          success : function(notification) {
+    	          	console.log(notification);
     	          },
     	          error : function() {
     	           alert("Error");

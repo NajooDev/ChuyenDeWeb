@@ -17,13 +17,13 @@
     <title>Electro - HTML Ecommerce Template</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link type="text/css" rel="stylesheet" href="css/slick.css"/>
-    <link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
-    <link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link type="text/css" rel="stylesheet" href="css/style.css"/>
-    <link type="text/css" rel="stylesheet" href="css/tmdt.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/slick.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/slick-theme.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/nouislider.min.css"/>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/tmdt.css"/>
     
     <style type="text/css">
     	.center {
@@ -52,7 +52,9 @@
     		height: 12px;
     		margin: 16px 0px;
     	}
-    	
+    	.error{
+			color:red;
+		}
     </style>
 </head>
 <body>
@@ -81,7 +83,7 @@
 <!-- /BREADCRUMB -->
 
 <div class="center">
-    <form:form action="/signUp" method="post" modelAttribute="userRegister">
+    <form:form action="/u/signUp" method="post" modelAttribute="userRegister">
 			<div class="outer_wrap">
 				<div class="in_wrap">
 					<div class="center_title">
@@ -90,6 +92,7 @@
 					<div>
 						<form:input path="userName" placeholder="Nhập username" class="big"/>
 						<form:errors path="userName" cssClass="error" />
+						<span class="error">${userName_error}</span>
 					</div>
 
 					<div>
@@ -97,7 +100,7 @@
 						<form:errors path="password" cssClass="error" />
 					</div>
 
-					<input type="password" placeholder="Nhập lại mật khẩu" class="password input_big" name="password_again" id="password_again">
+					<!-- <input type="password" placeholder="Nhập lại mật khẩu" class="password input_big" name="password_again" id="password_again"> -->
 					
 					<div class="show_password">
 						<!-- An element to toggle between password visibility -->
@@ -122,6 +125,7 @@
 						<form:label path="email">Email:</form:label>
 						<form:input path="email" placeholder="xxx@example.com" class="otherInput"/>
 						<form:errors path="email" cssClass="error" />
+						 <span class="error">${email_error}</span>
 					</div>
 
 					<div class="under">
@@ -143,7 +147,7 @@
 						</div>
 
 						<div class="signIn">
-                    		<a href="/CDW/Login.jsp">Đăng nhập</a>
+                    		<a href="/u/login">Đăng nhập</a>
                 		</div>
 					</div>
 				</div>
@@ -253,14 +257,14 @@
 <!-- /FOOTER -->
 
 <!-- jQuery Plugins -->
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/slick.min.js"></script>
-<script src="js/nouislider.min.js"></script>
-<script src="js/jquery.zoom.min.js"></script>
-<script src="js/main.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/slick.min.js"></script>
+<script src="/js/nouislider.min.js"></script>
+<script src="/js/jquery.zoom.min.js"></script>
+<script src="/js/main.js"></script>
 
-<script src="js/cdw.js"></script>
+<script src="/js/cdw.js"></script>
 
 </body>
 </html>

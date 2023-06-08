@@ -163,7 +163,7 @@
                 <div class="row">
                     <div class="col-12 link-wrap">
                         <!-- item-->
-                        <a href="/" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i
+                        <a href="/logout" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i
                                 class="mdi mdi-power"></i></a>
                     </div>
                 </div>
@@ -283,7 +283,7 @@
                                     <div class="form-group">
                                         <form:label path="birthday" class="col-md-12 mb-0">Ngày sinh</form:label>
                                         <div class="col-md-12">
-                                            <form:input path="birthday" type="date" class="form-control ps-0 form-control-line" />
+                                            <form:input path="birthday" type="date" class="form-control ps-0 form-control-line" value="${userInAdmin.formatDate()}"/>
                                         </div>
                                         <form:errors path="birthday" cssClass="error" />
                                     </div>

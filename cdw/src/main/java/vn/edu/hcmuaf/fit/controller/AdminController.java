@@ -1,8 +1,12 @@
 package vn.edu.hcmuaf.fit.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +25,7 @@ import vn.edu.hcmuaf.fit.entity.ImgDetail;
 import vn.edu.hcmuaf.fit.entity.OrderProduct;
 import vn.edu.hcmuaf.fit.entity.Product;
 import vn.edu.hcmuaf.fit.entity.User;
+import vn.edu.hcmuaf.fit.model.ProductDTO;
 import vn.edu.hcmuaf.fit.service.MailService;
 import vn.edu.hcmuaf.fit.service.MvcService;
 
@@ -32,21 +37,21 @@ public class AdminController {
 	@Autowired MailService mailService;
 	
 	@GetMapping("/userList")
-	public String adminForm(Model model) {
-		
+	public String adminForm(Model model,HttpSession session) {
+		 
 		List<User> userList = mvcService.getAllUser();
-		for(User user: userList) {
-			System.out.println(user.getUserPermission());
-		}
 		
-
-		model.addAttribute("permission", Arrays.asList("admin", "user"));
+		//Lưu permission vào session
+		session.setAttribute("permission", Arrays.asList("admin", "user"));
+		//lưu sex ( giới tính) vào session
+		session.setAttribute("sex", Arrays.asList("Nam", "Nữ"));
+				
 		model.addAttribute("userList", userList);
 		return "admin/userList";
 	}
 	
 	@PostMapping("/updatePermission")
-	public @ResponseBody User updatePermission(Model model,@RequestParam long userid, @RequestParam String permission) { 
+	public @ResponseBody String updatePermission(Model model,@RequestParam long userid, @RequestParam String permission) { 
 		
 		User user = mvcService.getUserById(userid);
 		
@@ -55,18 +60,15 @@ public class AdminController {
 		mvcService.saveUser(user);
 		System.out.println(user);
 		
-		return user;
+		return "Thay đổi quyền thành công";
 	}
 	
 	@GetMapping("/userInformation/{userId}")
 	public String userShowInAdmin(Model model,@PathVariable long userId) {
 		
 		User user = mvcService.getUserById(userId);
-//		user.setPassword("");
 		
-		List<String> sex =  Arrays.asList("Nam", "Nữ");
-		model.addAttribute("sex", sex);
-		model.addAttribute("permission", Arrays.asList("admin", "user"));
+		System.out.println(user);
 		model.addAttribute("userInAdmin", user);
 		return "admin/userShow";
 	}
@@ -76,37 +78,25 @@ public class AdminController {
 			BindingResult bindingResult,@PathVariable long userId) {
 		
 		
-		if(mvcService.getUserByUserName(userUpdate.getUserName()).getId() != userId && mvcService.getUserByUserName(userUpdate.getUserName()) != null) {
+		if(mvcService.checkUsernameExist(userUpdate)) {
 			
 			model.addAttribute("userName_error", "UserName đã tồn tại");
-			List<String> sex =  Arrays.asList("Nam", "Nữ");
-			model.addAttribute("sex", sex);
-			model.addAttribute("permission", Arrays.asList("admin", "user"));
 			return "admin/userShow";
 			
-		}else if(mvcService.getUserByEmail(userUpdate.getEmail()).getId() != userId && mvcService.getUserByEmail(userUpdate.getEmail()) != null){
+		}else if(mvcService.checkEmailExist(userUpdate)){
 			model.addAttribute("email_error", "email đã tồn tại");
-			List<String> sex =  Arrays.asList("Nam", "Nữ");
-			model.addAttribute("sex", sex);
-			model.addAttribute("permission", Arrays.asList("admin", "user"));
-			return "admin/userShow";
+			return "admin/userShow"; 
 		}
+		
 		if (bindingResult.hasErrors()) {	
-			System.out.println(userUpdate);
-			List<String> sex =  Arrays.asList("Nam", "Nữ");
-			model.addAttribute("sex", sex);
-			model.addAttribute("permission", Arrays.asList("admin", "user"));
 			return "admin/userShow";
 		}
+		
 		System.out.println(userUpdate);
 		mvcService.saveUser(userUpdate);
 		
 		List<User> userList = mvcService.getAllUser();
 		
-		for(User users: userList) {
-			System.out.println(users.getBirthday());
-		}
-		model.addAttribute("permission", Arrays.asList("admin", "user"));
 		model.addAttribute("userList", userList);
 		return "admin/userList";
 	}
@@ -115,10 +105,6 @@ public class AdminController {
 	public String createUserInAdminForm(Model model) {
 		
 		User user = new User();
-		
-		List<String> sex =  Arrays.asList("Nam", "Nữ");
-		model.addAttribute("sex", sex);
-		model.addAttribute("permission", Arrays.asList("admin", "user"));
 		model.addAttribute("userInAdmin", user);
 		return "admin/userShow";
 	}
@@ -128,27 +114,17 @@ public class AdminController {
 			BindingResult bindingResult) {
 		
 		System.out.println(mvcService.getUserByUserName(userCreate.getUserName()));
-		if(mvcService.getUserByUserName(userCreate.getUserName()) != null) {
+		if(mvcService.checkUsernameExist(userCreate)) {
 			
 			model.addAttribute("userName_error", "UserName đã tồn tại");
-			List<String> sex =  Arrays.asList("Nam", "Nữ");
-			model.addAttribute("sex", sex);
-			model.addAttribute("permission", Arrays.asList("admin", "user"));
 			return "admin/userShow";
 			
-		}else if(mvcService.getUserByEmail(userCreate.getEmail()) != null){
+		}else if(mvcService.checkEmailExist(userCreate)){
 			model.addAttribute("email_error", "email đã tồn tại");
-			List<String> sex =  Arrays.asList("Nam", "Nữ");
-			model.addAttribute("sex", sex);
-			model.addAttribute("permission", Arrays.asList("admin", "user"));
 			return "admin/userShow";
 		}
 		
 		if (bindingResult.hasErrors()) {	
-			System.out.println(userCreate);
-			List<String> sex =  Arrays.asList("Nam", "Nữ");
-			model.addAttribute("sex", sex);
-			model.addAttribute("permission", Arrays.asList("admin", "user"));
 			return "admin/userShow";
 		}
 		System.out.println(userCreate);
@@ -156,25 +132,28 @@ public class AdminController {
 		
 		List<User> userList = mvcService.getAllUser();
 		
-		for(User users: userList) {
-			System.out.println(users.getBirthday());
-		}
-		model.addAttribute("permission", Arrays.asList("admin", "user"));
 		model.addAttribute("userList", userList);
 		return "admin/userList";
 	}
 	
 	@PostMapping("/deleteUser")
-	public @ResponseBody User deleteUser(Model model,@RequestParam long id) {
+	public @ResponseBody String deleteUser(Model model,@RequestParam long id) {
 		
-		User user = new User();
+//		User user = new User();
 	
 		mvcService.deleteUserByid(id);
 		
-		return user;
+		return "Xóa thành công";
 	}
+	
 	@GetMapping("/productList")
-	public String productList(Model model) {
+	public String productList(Model model, HttpSession session) {
+		
+		List<String> cateBig = mvcService.getAllCategoryBigName();
+		session.setAttribute("cateBig", cateBig);
+		
+		List<String> cateSmall = mvcService.getAllCategorySmallName();
+		session.setAttribute("cateSmall", cateSmall);
 		
 		List<Product> productList = mvcService.getAllProduct();
 		
@@ -187,44 +166,23 @@ public class AdminController {
 		
 		Product product = mvcService.getProductById(productId);
 		
-		List<String> cateBig = mvcService.getAllCategoryBigString();
-		model.addAttribute("cateBig", cateBig);
-		
-		List<String> cateSmall = mvcService.getAllCategorySmallString();
-		model.addAttribute("cateSmall", cateSmall);
-		
-		int index =1;
-		for(ImgDetail imd : product.getDetails()) {
-			model.addAttribute("small_img_"+index++, imd.getImgName());
-		}
-		model.addAttribute("productInAdmin", product);
+		ProductDTO productDTO = new ProductDTO(product);
+		model.addAttribute("productInAdmin", productDTO);
 		return "admin/productShow";
 	}
 	
 	@PostMapping("/productInformation/{productId}")
-	public String productUpdateInAdmin(Model model,@Valid @ModelAttribute("productInAdmin") Product productUpdate,
-			BindingResult bindingResult,@PathVariable long productId,@RequestParam String small_img_1, @RequestParam String small_img_2,@RequestParam String small_img_3) {
+	public String productUpdateInAdmin(Model model,@Valid @ModelAttribute("productInAdmin") ProductDTO productUpdate,
+			BindingResult bindingResult,@PathVariable long productId) {
 		
 		if (bindingResult.hasErrors()) {	
-			List<String> cateBig = mvcService.getAllCategoryBigString();
-			model.addAttribute("cateBig", cateBig);
-			
-			List<String> cateSmall = mvcService.getAllCategorySmallString();
-			model.addAttribute("cateSmall", cateSmall);
 			
 			return "admin/productShow";
 		}
-		productUpdate.setDetails(mvcService.getProductById(productUpdate.getId()).getDetails());
+		Product product = mvcService.returnDTOToProduct(productUpdate);
+		System.out.println(product);
 		
-		productUpdate.getDetails().get(0).setImgName(small_img_1);
-		productUpdate.getDetails().get(1).setImgName(small_img_2);
-		productUpdate.getDetails().get(2).setImgName(small_img_3);
-		
-		productUpdate.setCategoryBig(mvcService.getCategoryBigByName(productUpdate.getCategoryBig().getCategoryName()));
-		productUpdate.setCategorySmall(mvcService.getCategorySmallByName(productUpdate.getCategorySmall().getCategoryName()));
-		System.out.println(productUpdate);
-		
-		mvcService.saveProduct(productUpdate);
+		mvcService.saveProduct(product);
 		List<Product> productList = mvcService.getAllProduct();
 		model.addAttribute("productListInAdmin", productList);
 		return "admin/productList";
@@ -233,48 +191,32 @@ public class AdminController {
 	@GetMapping("/createProductInAdmin")
 	public String createProductInAdminForm(Model model) {
 		
-		Product product = new Product();
-		
-		List<String> cateBig = mvcService.getAllCategoryBigString();
-		model.addAttribute("cateBig", cateBig);
-		
-		
-		List<String> cateSmall = mvcService.getAllCategorySmallString();
-		model.addAttribute("cateSmall", cateSmall);
+		ProductDTO product = new ProductDTO();
 		
 		model.addAttribute("productInAdmin", product);
 		return "admin/productShow";
 	}
 	
 	@PostMapping("/createProductInAdmin")
-	public String createProductInAdmin(Model model,@Valid @ModelAttribute("productInAdmin") Product productCreate,
-			BindingResult bindingResult ,@RequestParam String small_img_1, @RequestParam String small_img_2,@RequestParam String small_img_3) {
+	public String createProductInAdmin(Model model,@Valid @ModelAttribute("productInAdmin") ProductDTO productCreate,
+			BindingResult bindingResult) {
 		
 		if (bindingResult.hasErrors()) {	
-			List<String> cateBig = mvcService.getAllCategoryBigString();
-			model.addAttribute("cateBig", cateBig);
-			
-			List<String> cateSmall = mvcService.getAllCategorySmallString();
-			model.addAttribute("cateSmall", cateSmall);
-			
+			System.out.println(productCreate);
 			return "admin/productShow";
 		}
-		productCreate.getDetails().add(new ImgDetail(small_img_1)); 
-		productCreate.getDetails().add(new ImgDetail(small_img_2)); 
-		productCreate.getDetails().add(new ImgDetail(small_img_3)); 
 		
-		productCreate.setCategoryBig(mvcService.getCategoryBigByName(productCreate.getCategoryBig().getCategoryName()));
-		productCreate.setCategorySmall(mvcService.getCategorySmallByName(productCreate.getCategorySmall().getCategoryName()));
-		System.out.println(productCreate);
+		Product product = mvcService.returnDTOToProduct(productCreate);
+		System.out.println(product);
 		
-		mvcService.saveProduct(productCreate);
+		mvcService.saveProduct(product);
 		List<Product> productList = mvcService.getAllProduct();
 		model.addAttribute("productListInAdmin", productList);
 		return "admin/productList";
 	}
 	
 	@PostMapping("/deleteProductInAdmin")
-	public @ResponseBody Product deleteProduct(Model model,@RequestParam long id) {
+	public @ResponseBody String deleteProduct(Model model,@RequestParam long id) {
 		
 		Product product = mvcService.getProductById(id);
 		product.setCategoryBig(null);
@@ -283,7 +225,7 @@ public class AdminController {
 		mvcService.saveProduct(product);
 		mvcService.deleteProductByid(id); //phải làm cái trên vì nếu xóa product thì category big và category small được gắn vào nó cũng bị xóa theo luôn
 		
-		return product;
+		return "Xóa sản phẩm thành công";
 	}
 	
 	@GetMapping("/orderList")
@@ -300,7 +242,7 @@ public class AdminController {
 	}
 	
 	@PostMapping("/updateStatusOrder")
-	public @ResponseBody OrderProduct updateStatusOrder(Model model,@RequestParam long orderid, @RequestParam int status) { 
+	public @ResponseBody String updateStatusOrder(Model model,@RequestParam long orderid, @RequestParam int status) { 
 		
 		OrderProduct op = mvcService.getOrderProductById(orderid);
 		
@@ -309,6 +251,6 @@ public class AdminController {
 		mvcService.saveOrderProduct(op);
 		System.out.println(op);
 		
-		return op;
+		return "Cập nhật trạng thái đơn hàng thành công"; 
 	}
 }

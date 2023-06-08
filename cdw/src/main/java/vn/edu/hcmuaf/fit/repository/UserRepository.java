@@ -11,5 +11,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
 	
 	User findByEmail(String email);
 	
-
+	
+	 @Query("SELECT coalesce(max(e.id), 0) FROM User e")
+	 Long getMaxId();
 }

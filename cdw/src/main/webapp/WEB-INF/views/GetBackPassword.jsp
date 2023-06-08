@@ -21,17 +21,17 @@
 <!--CENTER-->
 <div class="container get_back_password_center center">
 
-    <form action="/getBackPassword" method="post">
+    <form action="/u/getBackPassword" method="post">
         <div class="outer_wrap">
             <div class="in_wrap get_back_password_wrap">
             <c:choose>
          		<c:when test = "${message != null}">
             		<p class="message">${message}</p>
-                    <a class="signInButton" href="/TMDT/Login.jsp">Đăng nhập</a>
+                    <a class="signInButton" href="/u/login">Đăng nhập</a>
          		</c:when>
          		<c:otherwise>
             		<div class="center_title">
-                    	<h4>Vui lòng nhập email</h4>
+                    	<h4>Vui lòng nhập email và username</h4>
                     	<p class="error">${error}</p>
                 	</div>
                 	<input type="text" placeholder="Nhập username" class="input_big" name="username">

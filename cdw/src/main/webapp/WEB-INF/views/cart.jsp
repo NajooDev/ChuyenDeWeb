@@ -51,9 +51,9 @@
 					<c:forEach items="${productList1}" var="product">
                     <div class="thubmnail-recent">
                         <img src="${product.img}" class="recent-thumb" alt="">
-                        <h2><a href="/productDetail/${product.id}" class="L-Affiliate-Tagged">${product.productName}</a></h2>
+                        <h2><a href="/u/productDetail/${product.id}" class="L-Affiliate-Tagged">${product.productName}</a></h2>
                         <div class="product-sidebar-price">
-                            <ins><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${product.price}" />đ</ins>
+                            <ins>${product.currencyFormat()}</ins>
                         </div>
                     </div>
 
@@ -101,7 +101,7 @@
 								</tr>
 							</thead>
 							<tbody>
-							<c:forEach items="${orderDetail}" var="od">
+							<c:forEach items="${order.orderdetails}" var="od">
 								<tr class="cart_item">
 									<td class="product-remove">
 									<a title="Remove this item" class="remove L-Affiliate-Tagged" pid="${od.productOrder.id}">×</a>
@@ -114,11 +114,11 @@
 											src="${od.productOrder.img}"></a>
 									</td>
 
-									<td class="product-name"><a href="SingleProduct?id=7"
+									<td class="product-name"><a href="/u/productDetail/${od.productOrder.id}"
 										class="L-Affiliate-Tagged">${od.productOrder.productName}</a>
 									</td>
 
-									<td class="product-price"><span class="amount" pPrice="${od.productOrder.price}"><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${od.productOrder.price}" /> đ</span>
+									<td class="product-price"><span class="amount" pPrice="${od.productOrder.price}">${od.productOrder.currencyFormat()}</span>
 									</td>
 
 									<td class="product-quantity">
@@ -130,7 +130,7 @@
 									</td>
 
 									<td class="product-subtotal"><span class="changeQuantity"
-										pPrice="7"><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${od.price}" /> đ</span></td>
+										pPrice="7">${od.currencyFormat()}</span></td>
 								</tr>
 								
 								</c:forEach>
@@ -176,11 +176,11 @@
                          <tbody>
                             <tr class="cart-subtotal">
                             	<th>Tổng tiền</th>
-								<td><span class="total-cart"><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${order.totalPrice}" />đ</span></td>
+								<td><span class="total-cart">${order.currencyFormat()}</span></td>
 							</tr>
 							<tr class="shipping">
                                  <th>Thanh toán</th>
-                                 <td><a class="checkout" href="/checkout">Thanh toán</a></td>
+                                 <td><a class="checkout" href="/u/checkout">Thanh toán</a></td>
                              </tr>
                           </tbody>
                      </table>
@@ -294,7 +294,7 @@
 <script src="/js/main.js"></script>
 
 <!--thư viện datatable-->
-<script src="dt/datatables.min.js"></script>
+<script src="/dt/datatables.min.js"></script>
 
 <script src="/js/cdw.js"></script>
 
@@ -321,12 +321,12 @@ $(document).ready( function () {
              var data={"idProduct": idProduct, "quantity":quantity};
              $.ajax({
     			 type : "POST",
-    	          contentType : "application/x-www-form-urlencoded; charset=UTF-8", //dữ liệu trong body muốn gửi là loại dữ liệu gì
-    	          url : "/addQuantityInCard", //controller trả về json
-    	          data : data, //dữ liệu muốn gửi
-    	          dataType : 'json', //mong muốn response trả về loại dữ liệu gì
-    	          cache : false, //Một giá trị Boolean cho biết liệu trình duyệt có lưu các trang được yêu cầu vào bộ đệm ẩn hay không. Mặc định là đúng
-    	          timeout : 600000, //Thời gian chờ cục bộ (tính bằng mili giây) cho yêu cầu
+    	          contentType : "application/x-www-form-urlencoded; charset=UTF-8", 
+    	          url : "/u/addQuantityInCard", 
+    	          data : data, 
+    	          dataType : 'json', 
+    	          cache : false, 
+    	          timeout : 600000, 
     	          success : function(orderProduct) {
     	        	 console.log(orderProduct);
     	        	 let price = parrent.find('td.product-price span').attr("pPrice");
@@ -365,12 +365,12 @@ $(document).ready( function () {
          var data={"id": id};
 			$.ajax({
 				 type : "POST",
-		          contentType : "application/x-www-form-urlencoded; charset=UTF-8", //dữ liệu trong body muốn gửi là loại dữ liệu gì
-		          url : "/deleteProduct", //controller trả về json
-		          data : data, //dữ liệu muốn gửi
-		          dataType : 'json', //mong muốn response trả về loại dữ liệu gì
-		          cache : false, //Một giá trị Boolean cho biết liệu trình duyệt có lưu các trang được yêu cầu vào bộ đệm ẩn hay không. Mặc định là đúng
-		          timeout : 600000, //Thời gian chờ cục bộ (tính bằng mili giây) cho yêu cầu
+		          contentType : "application/x-www-form-urlencoded; charset=UTF-8", 
+		          url : "/u/deleteProduct", 
+		          data : data, 
+		          dataType : 'json',
+		          cache : false, 
+		          timeout : 600000, 
 		          success : function(orderProduct) {
 		        	  
 		        	  var totalOrderPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(orderProduct.totalPrice);

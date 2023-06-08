@@ -25,6 +25,11 @@
     
         <!--để dùng thư viện datatable (ứng dụng: để thực hiện được thêm các chức năng cho table như: sắp xêp, phân trang , tìm kiếm, add, delete,...-->
     <link href="/dt/datatables.min.css" rel="stylesheet"/>
+    <style type="text/css">
+    	.error{
+			color:red;
+		}
+    </style>
 </head>
 <body>
 
@@ -35,21 +40,27 @@
 	<div class="update-user">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-5">
 					<h1 class="heading">Thông tin người dùng</h1>
-					<form:form action="/updateUser" method="post"
+					<form:form action="/u/updateUser" method="post"
 						modelAttribute="userShow">
 						<form:input path="id" style="display:none"/>
+						<form:input path="userPermission" style="display:none"/>
 						<div class="item">
 							<form:label path="userName" class="title">Username:</form:label>
 							<form:input path="userName" placeholder="Username"
-								class="input-update-user" />
+								class="input-update-user" 
+								onfocus="this.value = '';"
+								onblur="if(this.value == '') {this.value = '${userShow.userName}';}"/>
 							<form:errors path="userName" cssClass="error" />
+							<span class="error">${userName_error}</span>
 						</div>
 						<div class="item">
 							<form:label path="password" class="title">Password:</form:label>
 							<form:input type="password" path="password" placeholder="Nhập mật khẩu"
-								id="myInput" class="input-update-user" />
+								id="myInput" class="input-update-user" 
+								onfocus="this.value = '';"
+								onblur="if(this.value == '') {this.value = '${userShow.password}';}"/>
 							<div class="show_password">
 								<!-- An element to toggle between password visibility -->
                 				<input type="checkbox" onclick="myFunction()">Show Password
@@ -58,9 +69,9 @@
 						</div>
 						<div class="item">
 							<form:label path="birthday" class="title">Ngày sinh:</form:label>
-							<form:input path="birthday" type="date"  value=""
+							<form:input path="birthday" type="date"  value="${userShow.formatDate()}"
 								onfocus="this.value = '';"
-								onblur="if(this.value == '') {this.value = '${userShow.birthday}';}"
+								onblur="if(this.value == '') {this.value = '${userShow.formatDate()}';}"
 								class="input-update-user" />
 							<form:errors path="birthday" cssClass="error" />
 						</div>
@@ -79,6 +90,7 @@
 								onblur="if(this.value == '') {this.value = '${userShow.email}';}"
 								class="input-update-user" />
 							<form:errors path="email" cssClass="error" />
+							<span class="error">${email_error}</span>
 						</div>
 						<div class="item">
 							<form:label path="phone" class="title">Điện thoại:</form:label>
@@ -104,35 +116,39 @@
 					</form:form>
 				</div>
 				
-				<div class="col-md-6 productShow">
+				<div class="col-md-7 productShow">
 				<h1 class="heading">Lịch sử mua hàng</h1>
 					<table id="myTable" style="width:100%" class="table table-hover" > <!--dùng mdb4 ở đây-->
 					<thead>
         <tr>
-            <th>Img</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Day Order</th>
+            <th>Chi tiết</th>
+            <th>Tổng giá</th>
+            <th>Ngày đặt</th>
+            <th>Trạng thái</th>
         </tr>
         </thead>
         <tbody>
-						<c:forEach items="${userOrderDetail}" var="od">
+						<c:forEach items="${userOrderProduct}" var="op">
 							<tr class="product">
-								<td class="product__image">
-									<div class="product-thumbnail">
-										<div class="product-thumbnail__wrapper" data-tg-static="">
-											<img
-												src="${od.productOrder.img}"
-												alt="áo cho chó" class="product-thumbnail__image">
-										</div>
-										<!-- <span class="product-thumbnail__quantity">1</span> -->
-									</div>
-								</td>
 								<td class="product__description">
-								<span class="product__description__name">${od.productOrder.productName}</span> 
-								<span>Số lượng : ${od.quality}</span></td>
-								<td class="product__price"><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${od.productOrder.price}" /> đ</td>
-								<td>${od.dayOrder}</td>
+									<c:forEach items="${op.orderdetails}" var="od">
+										<span class="product__description__name">- ${od.productOrder.productName}  x${od.quality}</span> 
+										<%-- <span>Số lượng : ${od.quality}</span> --%>
+									</c:forEach>
+								</td>
+								<td class="product__price">${op.currencyFormat()}</td>
+								<td>${op.orderdetails[0].dayOrder}</td>
+									<c:choose>
+										<c:when test="${op.statusOrder == 1}">
+											<td>Đang giao</td>
+										</c:when>
+										<c:when test="${op.statusOrder == 2}">
+											<td>Đã giao</td>
+										</c:when>
+										<c:otherwise>
+											<td>Hủy giao</td>
+										</c:otherwise>
+									</c:choose>
 							</tr>
 						</c:forEach>
 						</tbody>
@@ -151,7 +167,7 @@
 <script src="/js/main.js"></script>
 
 <!--thư viện datatable-->
-<script src="dt/datatables.min.js"></script>
+<script src="/dt/datatables.min.js"></script>
 <script>
 $(document).ready( function () {
 	 $('#myTable').DataTable( {

@@ -185,7 +185,7 @@ img.img-responsive.center-block {
 				<div class="row">
 					<div class="col-md-12">
 						<div class="section-title">
-							<h4 class="title"><a href="/categoryBig/8">DỤNG CỤ SINH HOẠT</a></h4>
+							<h4 class="title"><a href="/u/categoryBig/8">DỤNG CỤ SINH HOẠT</a></h4>
 							<div id="slick-nav-1" class="products-slick-nav section-nav"></div>
 						</div>
 					</div>
@@ -202,9 +202,10 @@ img.img-responsive.center-block {
 										</a>
 										<div class="product-body">
 											<h3 class="product-name">
-												<a href="/productDetail/${product.id}">${product.productName}</a>
+												<a href="/u/productDetail/${product.id}">${product.productName}</a>
 											</h3>
-											<h4 class="product-price"><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${product.price}" />đ</h4>
+											<!-- <fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${product.price}" />đ -->
+											<h4 class="product-price">${product.currencyFormat()}</h4>
 										</div>
 										<div class="add-to-cart">
 											<p hidden>${product.id}</p>
@@ -237,7 +238,7 @@ img.img-responsive.center-block {
 					<!-- section title -->
 					<div class="col-md-12">
 						<div class="section-title">
-							<h4 class="title"><a href="/categoryBig/3">QUẦN ÁO THỜI TRANG</a></h4>
+							<h4 class="title"><a href="/u/categoryBig/3">QUẦN ÁO THỜI TRANG</a></h4>
 							<div id="slick-nav-2" class="products-slick-nav section-nav"></div>
 						</div>
 					</div>
@@ -256,9 +257,9 @@ img.img-responsive.center-block {
 										</a>
 										<div class="product-body">
 											<h3 class="product-name">
-												<a href="/productDetail/${product.id}">${product.productName}</a>
+												<a href="/u/productDetail/${product.id}">${product.productName}</a>
 											</h3>
-											<h4 class="product-price"><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${product.price}" />đ</h4>
+											<h4 class="product-price">${product.currencyFormat()}</h4>
 										</div>
 										<div class="add-to-cart">
 											<p hidden>${product.id}</p>
@@ -289,142 +290,11 @@ img.img-responsive.center-block {
 				<div class="row">
 					<div class="col-md-12">
 						<div class="section-title">
-							<h4 class="title"><a href="/categoryBig/10">LỒNG NHÀ NỆM</a></h4>
+							<h4 class="title"><a href="/u/categoryBig/10">LỒNG NHÀ NỆM</a></h4>
 						</div>
 					</div>
 					<div class="col-md-12">
 						<div class="products-tabs product-last">
-							<!-- <div class="tab-pane active"> -->
-								<!-- <div class="products-slick"> -->
-									<!-- <div class="product">
-										<a class="product-img" href="#">
-											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
-												alt="">
-										</a>
-										<div class="product-body">
-											<p class="product-category">Category</p>
-											<h3 class="product-name"><a href="#">product name goes here</a></h3>
-											<h4 class="product-price">$980.00</h4>
-										</div>
-										<div class="add-to-cart">
-											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
-												cart</button>
-										</div>
-									</div>
-		
-									<div class="product">
-										<a class="product-img" href="#">
-											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
-												alt="">
-										</a>
-										<div class="product-body">
-											<h3 class="product-name"><a href="#">product name goes here</a></h3>
-											<h4 class="product-price">$980.00</h4>
-										</div>
-										<div class="add-to-cart">
-											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
-												cart</button>
-										</div>
-									</div>
-		
-									<div class="product">
-										<a class="product-img" href="#">
-											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
-												alt="">
-										</a>
-										<div class="product-body">
-											<h3 class="product-name"><a href="#">product name goes here</a></h3>
-											<h4 class="product-price">$980.00</h4>
-										</div>
-										<div class="add-to-cart">
-											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
-												cart</button>
-										</div>
-									</div>
-		
-									<div class="product">
-										<a class="product-img" href="#">
-											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
-												alt="">
-										</a>
-										<div class="product-body">
-											<h3 class="product-name"><a href="#">product name goes here</a></h3>
-											<h4 class="product-price">$980.00</h4>
-										</div>
-										<div class="add-to-cart">
-											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
-												cart</button>
-										</div>
-									</div>
-
-									<div class="product">
-										<a class="product-img" href="#">
-											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
-												alt="">
-										</a>
-										<div class="product-body">
-											<h3 class="product-name"><a href="#">product name goes here</a></h3>
-											<h4 class="product-price">$980.00</h4>
-										</div>
-										<div class="add-to-cart">
-											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
-												cart</button>
-										</div>
-									</div>
-									
-									product
-									<div class="product">
-										<a class="product-img" href="#">
-											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
-												alt="">
-										</a>
-										<div class="product-body">
-											<p class="product-category">Category</p>
-											<h3 class="product-name"><a href="#">product name goes here</a></h3>
-											<h4 class="product-price">$980.00</h4>
-										</div>
-										<div class="add-to-cart">
-											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
-												cart</button>
-										</div>
-									</div>
-									product
-
-									product
-									<div class="product">
-										<a class="product-img" href="#">
-											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
-												alt="">
-										</a>
-										<div class="product-body">
-											<p class="product-category">Category</p>
-											<h3 class="product-name"><a href="#">product name goes here</a></h3>
-											<h4 class="product-price">$980.00</h4>
-										</div>
-										<div class="add-to-cart">
-											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
-												cart</button>
-										</div>
-									</div>
-									product
-
-									product
-									<div class="product">
-										<a class="product-img" href="#">
-											<img src="https://bizweb.dktcdn.net/100/092/840/products/bo-thuc-an-tu-dong-cho-cho-meo.jpg?v=1679631152000"
-												alt="">
-										</a>
-										<div class="product-body">
-											<p class="product-category">Category</p>
-											<h3 class="product-name"><a href="#">product name goes here</a></h3>
-											<h4 class="product-price">$980.00</h4>
-										</div>
-										<div class="add-to-cart">
-											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
-												cart</button>
-										</div>
-									</div> -->
-									
 									<c:forEach items="${productList3}" var="product">
 									<div class="product">
 										<a class="product-img" href="#"> <img
@@ -433,9 +303,9 @@ img.img-responsive.center-block {
 										</a>
 										<div class="product-body">
 											<h3 class="product-name">
-												<a href="/productDetail/${product.id}">${product.productName}</a>
+												<a href="/u/productDetail/${product.id}">${product.productName}</a>
 											</h3>
-											<h4 class="product-price"><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${product.price}" />đ</h4>
+											<h4 class="product-price">${product.currencyFormat()}</h4>
 										</div>
 										<div class="add-to-cart">
 											<p hidden>${product.id}</p>
@@ -572,12 +442,12 @@ $(document).ready(function() {
 		var data={"id": id, "quality" : 1};
 		$.ajax({
 			 type : "POST",
-	          contentType : "application/x-www-form-urlencoded; charset=UTF-8", //dữ liệu trong body muốn gửi là loại dữ liệu gì
-	          url : "/addProduct", //controller trả về json
-	          data : data, //dữ liệu muốn gửi
-	          dataType : 'json', //mong muốn response trả về loại dữ liệu gì
-	          cache : false, //Một giá trị Boolean cho biết liệu trình duyệt có lưu các trang được yêu cầu vào bộ đệm ẩn hay không. Mặc định là đúng
-	          timeout : 600000, //Thời gian chờ cục bộ (tính bằng mili giây) cho yêu cầu
+	          contentType : "application/x-www-form-urlencoded; charset=UTF-8", 
+	          url : "/u/addProduct", 
+	          data : data, 
+	          dataType : 'json', 
+	          cache : false, 
+	          timeout : 600000, 
 	          success : function(orderProduct) {
 	        	  
 	        	  cartList.empty();
@@ -589,7 +459,7 @@ $(document).ready(function() {
 							 	+"<img src=' "+od[i].productOrder.img+"' alt=''>"
 						   	 +"</div>"
 						     +"<div class='product-body'>"
-								+"<h3 class='product-name'><a href='#'>"+od[i].productOrder.productName+"</a></h3>"
+								+"<h3 class='product-name'><a href='/u/productDetail/"+od[i].productOrder.id+"'>"+od[i].productOrder.productName+"</a></h3>"
 							 	+"<h4 class='product-price'><span class='qty'>"+od[i].quality+"x</span>"+orderProductPrice+"</h4>"
 						     +"</div>"
 						   		+"<button class='delete' onclick='deleteProduct("+od[i].productOrder.id+")'><i class='fa fa-close'></i></button>"

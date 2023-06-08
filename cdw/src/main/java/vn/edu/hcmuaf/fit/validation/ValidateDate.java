@@ -16,7 +16,7 @@ import javax.validation.Payload;
 
 public @interface ValidateDate {
 
-	public String message() default "Date không vượt quá ngày hiện tại"; //default của message nếu không gọi
+	public String message() default "Ngày sinh không được vượt quá ngày hiện tại"; //default của message nếu không gọi
 
 	Class<?>[] groups() default { };
 

@@ -19,7 +19,7 @@
 </head>
 <body>
 
-	<form action="/saveOrder"  method="post">
+	<form action="/u/saveOrder"  method="post">
 		<div class="container">
 			<div class="row">
 
@@ -59,7 +59,7 @@
 
 					<table class="product-table table">
 						<tbody>
-						<c:forEach items="${orderDetail}" var="od">
+						<c:forEach items="${order.orderdetails}" var="od">
 							<tr class="product">
 								<td class="product__image">
 									<div class="product-thumbnail">
@@ -74,7 +74,7 @@
 								<td class="product__description">
 								<span class="product__description__name">${od.productOrder.productName}</span> 
 								<span>Số lượng : ${od.quality}</span></td>
-								<td class="product__price"><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${od.productOrder.price}" /> đ</td>
+								<td class="product__price">${od.productOrder.currencyFormat()}</td>
 							</tr>
 						</c:forEach>
 							<!-- <tr class="product">
@@ -98,11 +98,11 @@
 
 					<div class="total">
 						<span class="totalTitle">Tổng cộng: </span> <span
-							class="totalPrice"><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${order.totalPrice}" />đ</span>
+							class="totalPrice">${order.currencyFormat()}</span>
 					</div>
 					
 					<div class="summary">
-						<a href="/cart">❮ Quay về giỏ hàng</a>
+						<a href="/u/cart">❮ Quay về giỏ hàng</a>
 						<button>Đặt hàng</button>
 					</div>
 				</div>

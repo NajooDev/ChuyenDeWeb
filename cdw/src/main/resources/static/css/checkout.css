@@ -1,16 +1,20 @@
 body {
     font-family: Helvetica Neue,sans-serif;
+    background-color: #fafafa;
 }
 
 .container{
-	
 	border:1px solid black;
-	
+	margin-top: 80px;
 }
 
 span.title{
 	font-weight: bold;
 	text-transform: uppercase;
+}
+
+.col-md-6.information {
+    background-color: white;
 }
 
 label {
@@ -61,6 +65,7 @@ td.product__price {
 .summary{
 	width: 95%;
 	 padding: 11px 0px;
+	 margin-bottom: 60px;
 }
 
 .summary button{

@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -38,21 +39,22 @@ public class User {
 	@Column(name = "password", length = 128, nullable = false)
     private String password;
 	
-	@DateTimeFormat(iso = ISO.DATE)
+//	@DateTimeFormat(iso = ISO.DATE)
 	@NotNull(message = "Ngày sinh không được trống")
 	@ValidateDate
 	
-    @Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE) //nói rằng tham số phải được định dạng bằng Date(yyyy-mm-dd)
+//    @Temporal(TemporalType.DATE)
     @Column(name = "birthday", nullable = false)
     private Date birthday;
     
-    @NotBlank(message = "giới tính không được để null")
+    @NotBlank(message = "giới tính không được để trống")
     
     @Column(name = "sex", length = 5, nullable = false)
     private String sex;
     
     @NotBlank(message = "Email không được để trống")
-    @Email(message = "Please enter a valid e-mail address")
+    @Email(message = "Email không hợp lệ")
 //    @ValidationEmail
     
     @Column(name = "email", length = 100, nullable = false)
@@ -96,11 +98,10 @@ public class User {
 		this.password = password;
 	}
 
-	@DateTimeFormat(iso = ISO.DATE)
 	public Date getBirthday() {
 		return birthday;
 	}
-
+	
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
@@ -145,6 +146,15 @@ public class User {
 
 	public void setUserPermission(String user_permission) {
 		this.userPermission = user_permission;
+	}
+	
+	public String formatDate() {
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			return sdf.format(this.birthday);
+		}catch(NullPointerException e) {
+			return "";
+		}
 	}
 	@Override
 	public String toString() {

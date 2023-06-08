@@ -79,13 +79,9 @@
 									</a>
 									<div class="product-body">
 										<h3 class="product-name">
-											<a href="/productDetail/${product.id}">${product.productName}</a>
+											<a href="/u/productDetail/${product.id}">${product.productName}</a>
 										</h3>
-										<h4 class="product-price">
-											<fmt:formatNumber type="number" maxFractionDigits="3"
-												value="${product.price}" />
-											đ
-										</h4>
+										<h4 class="product-price">${product.currencyFormat()}</h4>
 									</div>
 									<div class="add-to-cart">
 									<p hidden>${product.id}</p>
@@ -238,19 +234,6 @@
 <script src="/js/jquery.zoom.min.js"></script>
 <script src="/js/main.js"></script>
 <script>
-    // function myFunction() {
-    // 	var checkBox = document.getElementById("category-1");
-    // 	if (checkBox.checked == true){
-    // 		console.log("checked");
-    // 		document.getElementById("category-2").setAttribute("checked", "unchecked");
-    // 		document.getElementById("category-3").setAttribute("checked", "unchecked");
-    // 		document.getElementById("category-4").setAttribute("checked", "unchecked");
-    // 		document.getElementById("category-5").setAttribute("checked", "unchecked");
-    // 		document.getElementById("category-6").setAttribute("checked", "unchecked");
-    // 	} else {
-    // 		console.log("unchecked");
-    // 	}
-    // }
     $(document).ready(function () {
 
         $('.category').click(function () {
@@ -264,12 +247,12 @@
     		var data={"id": id, "quality" : 1};
     		$.ajax({
     			 type : "POST",
-    	          contentType : "application/x-www-form-urlencoded; charset=UTF-8", //dữ liệu trong body muốn gửi là loại dữ liệu gì
-    	          url : "/addProduct", //controller trả về json
-    	          data : data, //dữ liệu muốn gửi
-    	          dataType : 'json', //mong muốn response trả về loại dữ liệu gì
-    	          cache : false, //Một giá trị Boolean cho biết liệu trình duyệt có lưu các trang được yêu cầu vào bộ đệm ẩn hay không. Mặc định là đúng
-    	          timeout : 600000, //Thời gian chờ cục bộ (tính bằng mili giây) cho yêu cầu
+    	          contentType : "application/x-www-form-urlencoded; charset=UTF-8", 
+    	          url : "/u/addProduct", 
+    	          data : data, 
+    	          dataType : 'json', 
+    	          cache : false, 
+    	          timeout : 600000, 
     	          success : function(orderProduct) {
     	        	  
     	        	  cartList.empty();
@@ -281,7 +264,7 @@
     							 	+"<img src=' "+od[i].productOrder.img+"' alt=''>"
     						   	 +"</div>"
     						     +"<div class='product-body'>"
-    								+"<h3 class='product-name'><a href='#'>"+od[i].productOrder.productName+"</a></h3>"
+    								+"<h3 class='product-name'><a href='/u/productDetail/"+od[i].productOrder.id+"'>"+od[i].productOrder.productName+"</a></h3>"
     							 	+"<h4 class='product-price'><span class='qty'>"+od[i].quality+"x</span>"+orderProductPrice+"</h4>"
     						     +"</div>"
     						   		+"<button class='delete' onclick='deleteProduct("+od[i].productOrder.id+")'><i class='fa fa-close'></i></button>"

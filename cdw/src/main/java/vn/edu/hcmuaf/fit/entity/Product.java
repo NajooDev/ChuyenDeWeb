@@ -1,7 +1,9 @@
 package vn.edu.hcmuaf.fit.entity;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,8 +21,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.format.annotation.NumberFormat;
-import org.springframework.format.annotation.NumberFormat.Style;
+//import org.springframework.format.annotation.NumberFormat;
+//import org.springframework.format.annotation.NumberFormat.Style;
 
 @Entity
 @Table(name="Product")
@@ -29,25 +31,17 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@NotBlank(message = "Tên sản phẩm không được để trống")
 	
 	@Column(name = "product_name", length = 128, nullable = false)
     private String productName;
-	
-	@NotBlank(message = "description không được để trống")
-	
+		
 	@Lob 
 	@Column(name = "description", nullable = false)
     private String description;
 	
 	
-	@NotNull
-	@Min(value = 1_000)
-	
 	@Column(name = "price", length = 20, nullable = false)
 	private float price;
-	
-	@NotBlank(message = "img không được để trống")
 	
 	@Column(name = "img", length = 200, nullable = false)
 	private String img;
@@ -176,7 +170,12 @@ public class Product {
 		this.menuId = menuId;
 	}
 
-
+	public String currencyFormat(){
+		Locale locale = new Locale("vi", "VN");
+		NumberFormat numberFormat = NumberFormat.getCurrencyInstance(locale);
+		String result = numberFormat.format(this.price);
+		return result;
+	}
 	@Override
 	public String toString() {
 		return "id: " + getId() + ", productName: " + getProductName() + ", description: " + getDescription() + ", price: "

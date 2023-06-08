@@ -1,8 +1,10 @@
 package vn.edu.hcmuaf.fit.entity;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -173,7 +175,12 @@ public class OrderProduct {
 	 * 
 	 * return this.getOrderdetails().get(0).getDayOrder(); }
 	 */
-	
+	public String currencyFormat(){
+		Locale locale = new Locale("vi", "VN");
+		NumberFormat numberFormat = NumberFormat.getCurrencyInstance(locale);
+		String result = numberFormat.format(this.totalPrice);
+		return result;
+	}
 	@Override
 	public String toString() {
 		return "id: " + id + ", userOrder: " + userOrder + ", status: " + statusOrder + ", details: " + Orderdetails +", totalPrice: "+ totalPrice +", otherAddress: "+ otherAddress;

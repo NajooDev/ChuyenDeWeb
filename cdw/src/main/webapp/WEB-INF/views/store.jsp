@@ -32,7 +32,7 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="breadcrumb-tree">
-                    <li><a href="/">Trang chủ</a></li>
+                    <li><a href="/u">Trang chủ</a></li>
                     <li class="active">${category.categoryName}</li>
                 </ul>
             </div>
@@ -50,217 +50,14 @@
         <!-- row -->
         <div class="row">
             <!-- ASIDE -->
-            <div id="aside" class="col-md-3">
-                <!-- aside Widget -->
-                <div class="aside">
-                    <div class="aside-header">
-                        <h3 class="aside-title">Categories</h3>
-                        <button class="aside-button">Xác nhận</button>
-                    </div>
-
-                    <div class="checkbox-filter">
-
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="category-1" class="category" name="category">
-                            <label for="category-1">
-                                <span></span>
-                                Laptops
-                                <small>(120)</small>
-                            </label>
-                        </div>
-
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="category-2" class="category" name="category">
-                            <label for="category-2">
-                                <span></span>
-                                Smartphones
-                                <small>(740)</small>
-                            </label>
-                        </div>
-
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="category-3" class="category" name="category">
-                            <label for="category-3">
-                                <span></span>
-                                Cameras
-                                <small>(1450)</small>
-                            </label>
-                        </div>
-
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="category-4" class="category" name="category">
-                            <label for="category-4">
-                                <span></span>
-                                Accessories
-                                <small>(578)</small>
-                            </label>
-                        </div>
-
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="category-5" class="category" name="category">
-                            <label for="category-5">
-                                <span></span>
-                                Laptops
-                                <small>(120)</small>
-                            </label>
-                        </div>
-
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="category-6" class="category" name="category">
-                            <label for="category-6">
-                                <span></span>
-                                Smartphones
-                                <small>(740)</small>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <!-- /aside Widget -->
-
-                <!-- aside Widget -->
-<!--                <div class="aside">-->
-<!--                    <h3 class="aside-title">Price</h3>-->
-<!--                    <div class="price-filter">-->
-<!--                        <div id="price-slider"></div>-->
-<!--                        <div class="input-number price-min">-->
-<!--                            <input id="price-min" type="number">-->
-<!--                            <span class="qty-up">+</span>-->
-<!--                            <span class="qty-down">-</span>-->
-<!--                        </div>-->
-<!--                        <span>-</span>-->
-<!--                        <div class="input-number price-max">-->
-<!--                            <input id="price-max" type="number">-->
-<!--                            <span class="qty-up">+</span>-->
-<!--                            <span class="qty-down">-</span>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-                <!-- /aside Widget -->
-
-                <!-- aside Widget -->
-                <div class="aside">
-                    <div class="aside-header">
-                        <h3 class="aside-title">Brand</h3>
-                        <button class="aside-button">Xác nhận</button>
-                    </div>
-                    <div class="checkbox-filter">
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="brand-1">
-                            <label for="brand-1">
-                                <span></span>
-                                SAMSUNG
-                                <small>(578)</small>
-                            </label>
-                        </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="brand-2">
-                            <label for="brand-2">
-                                <span></span>
-                                LG
-                                <small>(125)</small>
-                            </label>
-                        </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="brand-3">
-                            <label for="brand-3">
-                                <span></span>
-                                SONY
-                                <small>(755)</small>
-                            </label>
-                        </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="brand-4">
-                            <label for="brand-4">
-                                <span></span>
-                                SAMSUNG
-                                <small>(578)</small>
-                            </label>
-                        </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="brand-5">
-                            <label for="brand-5">
-                                <span></span>
-                                LG
-                                <small>(125)</small>
-                            </label>
-                        </div>
-                        <div class="input-checkbox">
-                            <input type="checkbox" id="brand-6">
-                            <label for="brand-6">
-                                <span></span>
-                                SONY
-                                <small>(755)</small>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <!-- /aside Widget -->
-
-                <!-- aside Widget -->
-                <!-- <div class="aside">
-                    <h3 class="aside-title">Top selling</h3>
-                    <div class="product-widget">
-                        <div class="product-img">
-                            <img src="./img/product01.png" alt="">
-                        </div>
-                        <div class="product-body">
-                            <p class="product-category">Category</p>
-                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                            <h4 class="product-price">$980.00
-                                <del class="product-old-price">$990.00</del>
-                            </h4>
-                        </div>
-                    </div>
-
-                    <div class="product-widget">
-                        <div class="product-img">
-                            <img src="./img/product02.png" alt="">
-                        </div>
-                        <div class="product-body">
-                            <p class="product-category">Category</p>
-                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                            <h4 class="product-price">$980.00
-                                <del class="product-old-price">$990.00</del>
-                            </h4>
-                        </div>
-                    </div>
-
-                    <div class="product-widget">
-                        <div class="product-img">
-                            <img src="./img/product03.png" alt="">
-                        </div>
-                        <div class="product-body">
-                            <p class="product-category">Category</p>
-                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                            <h4 class="product-price">$980.00
-                                <del class="product-old-price">$990.00</del>
-                            </h4>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- /aside Widget -->
-            </div>
+            
             <!-- /ASIDE -->
 
             <!-- STORE -->
 
-            <div id="store" class="col-md-9">
+            <div id="store" class="col-md-12">
                 <!-- store top filter -->
-                <form action="/HTMT/ProductListIncrease" method="post">
-                    <div class="store-filter clearfix">
-                        <div class="store-sort">
-                            <label>
-                                Sort By:
-                                <select class="input-select" name="selectSort">
-                                    <option value="0">Popular</option>
-                                    <option value="1">Position</option>
-                                </select>
-                            </label>
-
-                            <button class="aside-button">Xác nhận</button>
-                        </div>
-                    </div>
-                </form>
+               
 
                 <!-- /store top filter -->
 
@@ -269,20 +66,16 @@
 
 						<!-- Product -->
 						<c:forEach items="${productList}" var="product">
-							<div class="col-md-4 col-xs-6">
+							<div class="col-md-3 col-xs-6">
 								<div class="product">
 									<a class="product-img" href="#"> <img src="${product.img}"
 										alt="">
 									</a>
 									<div class="product-body">
 										<h3 class="product-name">
-											<a href="/productDetail/${product.id}">${product.productName}</a>
+											<a href="/u/productDetail/${product.id}">${product.productName}</a>
 										</h3>
-										<h4 class="product-price">
-											<fmt:formatNumber type="number" maxFractionDigits="3"
-												value="${product.price}" />
-											đ
-										</h4>
+										<h4 class="product-price">${product.currencyFormat()}</h4>
 									</div>
 									<div class="add-to-cart">
 									<p hidden>${product.id}</p>
@@ -461,12 +254,12 @@
     		var data={"id": id, "quality" : 1};
     		$.ajax({
     			 type : "POST",
-    	          contentType : "application/x-www-form-urlencoded; charset=UTF-8", //dữ liệu trong body muốn gửi là loại dữ liệu gì
-    	          url : "/addProduct", //controller trả về json
-    	          data : data, //dữ liệu muốn gửi
-    	          dataType : 'json', //mong muốn response trả về loại dữ liệu gì
-    	          cache : false, //Một giá trị Boolean cho biết liệu trình duyệt có lưu các trang được yêu cầu vào bộ đệm ẩn hay không. Mặc định là đúng
-    	          timeout : 600000, //Thời gian chờ cục bộ (tính bằng mili giây) cho yêu cầu
+    	          contentType : "application/x-www-form-urlencoded; charset=UTF-8", 
+    	          url : "/u/addProduct", 
+    	          data : data, 
+    	          dataType : 'json', 
+    	          cache : false, 
+    	          timeout : 600000, 
     	          success : function(orderProduct) {
     	        	  
     	        	  cartList.empty();

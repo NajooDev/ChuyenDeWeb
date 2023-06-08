@@ -1,7 +1,7 @@
 package vn.edu.hcmuaf.fit.service;
 
-import vn.edu.hcmuaf.fit.entity.EmailDetails;
+import vn.edu.hcmuaf.fit.model.EmailDetails;
 
 public interface MailService {
-	 String sendSimpleMail(EmailDetails details);
+	 void sendSimpleMail(EmailDetails details);
 }

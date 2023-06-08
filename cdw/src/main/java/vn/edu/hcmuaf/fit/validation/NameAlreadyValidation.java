@@ -6,15 +6,16 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import vn.edu.hcmuaf.fit.repository.UserRepository;
+import vn.edu.hcmuaf.fit.service.MvcService;
 
 public class NameAlreadyValidation  implements ConstraintValidator<ValidationName, String>{
 
-	@Autowired UserRepository repository;
+	@Autowired MvcService mvcService;
 	@Override
 	public boolean isValid(String value, ConstraintValidatorContext context) {
 		// TODO Auto-generated method stub
 		
-		if(repository.findByUserName(value) != null) {
+		if(mvcService.getUserByName(value) != null) {
 			return false;
 		}
 		return true;
